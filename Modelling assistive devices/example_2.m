@@ -1,7 +1,7 @@
 % --------------------------------------------------------------------------
 % Modelling assistive devices
 % hands-on sessions
-% Example 1. Changing the parameters of an existing orthosis
+% Example 2. Defining a custom orthosis
 %
 %   This script requires PredSim and its dependencies to be installed.
 %   See https://github.com/KULeuvenNeuromechanics/PredSim
@@ -42,7 +42,7 @@ S.misc.main_path = pathPredSim;
 S.subject.name = 'gait1018';
 
 % Path to folder where simulation results should be saved
-S.subject.save_folder  = fullfile(pwd,'Results','example_1',S.subject.name); 
+S.subject.save_folder  = fullfile(pwd,'Results','example_2',S.subject.name); 
 
 % Provide an initial guess for the kinematics.
 %   Option 1: warm-start
@@ -83,29 +83,38 @@ S.OpenSimADOptions.verbose_mode = false;
 
 
 
-%% Add an ankle exoskeleton to the model
-% Comment this section to run a simulation without exoskeleton.
+%% 2.1 Add a hip exoskeleton to the model
 
-% Select 'ankleExoEmgProportional', one of the examples provided in
-% PredSim/WearableDevices.
-S.orthosis.settings{1}.function_name = 'ankleExoEmgProportional';
+% Select 'hipExoPassiveElastic'. Before running a simulation, this function
+% needs to be completed
+S.orthosis.settings{1}.function_name = 'hipExoPassiveElastic';
 
 % Add the exoskeleton to the right side
 S.orthosis.settings{1}.left_right = 'r';
 
-% Set the controller gain 
-S.orthosis.settings{1}.gain = 40; % Nm / soleus activation
-
+% Set the stiffness
+S.orthosis.settings{1}.stiffness = 10; % Nm/rad
 
 % Add the same exoskeleton on the left side
-%   Note: When left and night side are different, make sure to set 
-%   S.misc.gaitmotion_type = 'FullGaitCycle';
-S.orthosis.settings{2}.function_name = 'ankleExoEmgProportional';
+S.orthosis.settings{2}.function_name = 'hipExoPassiveElastic';
 S.orthosis.settings{2}.left_right = 'l';
-S.orthosis.settings{2}.gain = 40; % Nm / soleus activation
+S.orthosis.settings{2}.stiffness = 10; % Nm/rad
 
 
+%% 2.2 Add a rubber band connecting both ankles of the model
 
+% % Remove previously added orthoses. 
+% S.orthosis.settings = {};
+% 
+% % Select 'rubberBandBetweenAnkles'. Before running a simulation, this function
+% % needs to be completed
+% S.orthosis.settings{end+1}.function_name = 'rubberBandBetweenAnkles';
+% 
+% % Set the stiffness
+% S.orthosis.settings{end}.stiffness = 10; % N/m
+% 
+% % Set the length at which the rubber band is not stretched
+% S.orthosis.settings{end}.zero_length = 0.1; % m
 
 %% Run predictive simulations
 

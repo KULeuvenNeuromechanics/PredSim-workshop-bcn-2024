@@ -42,7 +42,7 @@ S.misc.main_path = pathPredSim;
 S.subject.name = 'gait1018';
 
 % Path to folder where simulation results should be saved
-S.subject.save_folder  = fullfile(pwd,'Results','example_1',S.subject.name); 
+S.subject.save_folder  = fullfile(pwd,'Results','example_3',S.subject.name); 
 
 % Provide an initial guess for the kinematics.
 %   Option 1: warm-start
@@ -59,7 +59,7 @@ S.subject.IG_selection_gaitCyclePercent = 100;
 
 % Path to the opensim model of the subject
 %   Note: The name of the file and folder do not have to match S.subject.name
-osim_path = fullfile(S.misc.main_path,'Subjects','gait1018','gait1018.osim');
+osim_path = fullfile(S.misc.main_path,'Subjects','gait1018','gait1018_exoMass1.osim');
 
 % Run the simulation as a batch job (parallel computing toolbox). This can
 % be useful when running many simulations.
@@ -81,7 +81,11 @@ S.solver.CasADi_path = 'C:\GBW_MyPrograms\casadi\v3.6.5';
 % is only useful for debugging.
 S.OpenSimADOptions.verbose_mode = false;
 
-
+% The body mass of the subject (used for the metabolic energy model) is
+% usually set equal to the total mass of the OpenSim model. If the model
+% includes additional mass (e.g. from an exoskeleton), the body mass needs
+% to be set manually.
+S.subject.mass = 62; % [kg]
 
 %% Add an ankle exoskeleton to the model
 % Comment this section to run a simulation without exoskeleton.
