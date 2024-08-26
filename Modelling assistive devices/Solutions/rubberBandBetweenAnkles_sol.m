@@ -1,4 +1,4 @@
-function [rubberBand] = rubberBandBetweenAnkles(init, settings_orthosis)
+function [rubberBand] = rubberBandBetweenAnkles_sol(init, settings_orthosis)
 % --------------------------------------------------------------------------
 % rubberBandBetweenAnkles
 %   Defines a rubber band connecting both ankles.

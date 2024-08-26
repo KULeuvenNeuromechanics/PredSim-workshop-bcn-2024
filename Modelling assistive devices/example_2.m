@@ -103,6 +103,9 @@ S.orthosis.settings{2}.stiffness = 10; % Nm/rad
 
 %% 2.2 Add a rubber band connecting both ankles of the model
 
+% % Set velocity
+% S.subject.v_pelvis_x_trgt = 2.67;
+% 
 % % Remove previously added orthoses. 
 % S.orthosis.settings = {};
 % 
@@ -111,10 +114,10 @@ S.orthosis.settings{2}.stiffness = 10; % Nm/rad
 % S.orthosis.settings{end+1}.function_name = 'rubberBandBetweenAnkles';
 % 
 % % Set the stiffness
-% S.orthosis.settings{end}.stiffness = 10; % N/m
+% S.orthosis.settings{end}.stiffness = 120; % N/m
 % 
 % % Set the length at which the rubber band is not stretched
-% S.orthosis.settings{end}.zero_length = 0.1; % m
+% S.orthosis.settings{end}.zero_length = 0.25; % m
 
 %% Run predictive simulations
 

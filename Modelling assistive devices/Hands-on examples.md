@@ -12,7 +12,7 @@ This exoskeleton is already implemented (PredSim/WearableDevices/ankleExoEmgProp
 
 Run simulations with different gain values to explore the effect on the gait pattern.
 
-Use PredSim/PlotFigures/run_this_file_to_plot_figures.m to plot the variables of interest for the different results.
+Use [plot_result_example_1](./plot_result_example_1.m) to plot the variables of interest.
 
 ## Example 2. Defining a custom orthosis
 
@@ -24,8 +24,11 @@ To access the documentation of the Orthosis interface, run `help Orthosis` in th
 
 Complete the function [hipExoPassiveElastic](./hipExoPassiveElastic.m) (see PredSim/WearableDevices/parametricAFO.m for inspiration) and run [example_2](./example_2.m).
 
+Adapt [plot_result_example_1](./plot_result_example_1.m) to plot the variables of interest.
 
 ### 2.2. A rubber band connecting both ankles (hard)
+
+[Simpson et al found that connecting the legs with a spring improves running economy](https://doi.org/10.1242/jeb.202895). Let's try to simulate their experiments.
 
 Complete the function [rubberBandBetweenAnkles](./rubberBandBetweenAnkles.m) and run [example_2](./example_2.m) (Make sure you select the correct orthosis).
 
@@ -52,6 +55,6 @@ Possible ways to adapt an OpenSim model include:
     - write matlab code that uses the OpenSim api to adapt the model: if you are feeling adventurous
 3. Run [example_3](./example_3.m)
 
-*Important:* if you want to change any of the model parameters, create a new model with a different name.
+*Important:* if you want to change any of the OpenSim model parameters, create a new model with a different name.
 
 ## Example 4. Walking with crutches

@@ -1,4 +1,4 @@
-function [exo] = hipExoPassiveElastic(init, settings_orthosis)
+function [exo] = hipExoPassiveElastic_sol(init, settings_orthosis)
 % --------------------------------------------------------------------------
 % hipExoPassiveElastic
 %   Defines a passive hip exoskeleton as a rotational spring 
