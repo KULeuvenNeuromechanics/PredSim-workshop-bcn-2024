@@ -154,7 +154,7 @@ save(fullfile(Misc.OutPath,['BCN_' Misc.subjectName '_' Misc.AnalysisID '_paramE
 %% Moving towards PredSim
 cd(pathPredSim)
 predSimSubjectName = ['BCN_' Misc.subjectName '_' Misc.AnalysisID '_paramEst'];
-predSimSubjectDir =  fullfile(pathPredSim,'PredSim','Subjects',predSimSubjectName);
+predSimSubjectDir =  fullfile(pathPredSim,'Subjects',predSimSubjectName);
 mkdir(predSimSubjectDir)
 copyfile(fullfile(Misc.OutPath,['BCN_' Misc.subjectName '_' Misc.AnalysisID '_paramEst_tendon_stiff_scale.mat']),...
     fullfile(predSimSubjectDir,[predSimSubjectName '_tendon_stiff_scale.mat']));
@@ -174,7 +174,7 @@ clearvars -except Misc
 close all
 clc
 % path to the repository folder
-pathRepo = fullfile(Misc.pathPredSim,'PredSim');
+pathRepo = Misc.pathPredSim;
 % path to the folder that contains the repository folder
 pathRepoFolder = Misc.pathPredSim;
 

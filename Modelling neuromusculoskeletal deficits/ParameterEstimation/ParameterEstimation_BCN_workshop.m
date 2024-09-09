@@ -26,7 +26,7 @@ Misc.EMGbounds  = [-0.1 0.1];
 Misc.BoundsScaleEMG = [0.2 5];
 
 pathParamEst = 'C:\Users\u0145647\OneDrive - KU Leuven\KU Leuven\BCN_Workshop\ParameterEstimation';
-pathPredSim = 'C:\GBW_MyPrograms\PredSim_2D_BCN';
+pathPredSim = 'C:\GBW_MyPrograms\PredSim_2D_BCN\PredSim';
 
 Misc.AnalysisID = 'v1'; % Name given to the estimation you run
 
