@@ -4,7 +4,7 @@ Misc.model_path = fullfile(Misc.DataPath,'Model',['BCN_' Misc.subjectName '_Pred
 Misc.OutPath = fullfile(pathParamEst,['ResultsTest_' Misc.subjectName]); % folder to store results
 addpath(genpath(fullfile(pathParamEst,'MuscleRedundancySolver')));
 
-Misc.timePointsFile = ['timepoints_all_' Misc.subjectName '_Use_2.xlsx'];
+Misc.timePointsFile = ['timepoints_all_' Misc.subjectName '.xlsx'];
 
 %% Input information
 % Add here the paths of IK, ID , US and EMG data trials you want to work with
@@ -14,9 +14,9 @@ trialTypes_functional = {'s2s','sit2stand','stand2sit','gait_normal','gait_fast'
 trialInfo = readtable(fullfile(Misc.DataPath,Misc.timePointsFile));
 time = [trialInfo.IC1 trialInfo.IC2];
 Misc.trialName = trialInfo.Trial';
-Misc.IKfile = trialInfo.IKfile';
-Misc.IDfile = trialInfo.IDfile';
-Misc.EMGfile = trialInfo.EMGfile';
+Misc.IKfile = strcat(pathParamEst,trialInfo.IKfile)';
+Misc.IDfile = strcat(pathParamEst,trialInfo.IDfile)';
+Misc.EMGfile = strcat(pathParamEst,trialInfo.EMGfile)';
 Misc.side = lower(trialInfo.side)';
 Misc.trialType = trialInfo.movement';
 Misc.trialFP = trialInfo.FP;
