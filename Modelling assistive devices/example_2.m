@@ -74,7 +74,10 @@ S.solver.run_as_batch_job = false;
 % is only useful for debugging.
 % S.OpenSimADOptions.verbose_mode = true;
 
-
+% When running the simulation as a batch job, pass the path to the current
+% folder to the job such that it can find the function hipExoPassiveElastic
+% or rubberBandBetweenAnkles.
+% S.solver.batch_job_paths = {pwd};
 
 %% 2.1 Add a hip exoskeleton to the model
 
