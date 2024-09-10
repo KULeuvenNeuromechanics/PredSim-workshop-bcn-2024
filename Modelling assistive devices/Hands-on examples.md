@@ -1,6 +1,5 @@
 # Modelling assistive devices
 
-**Note: currently, these examples use the PredSim version at https://github.com/KULeuvenNeuromechanics/PredSim_private/tree/dev-orthosis.**
 
 In PredSim, assistive devices can be modelled by using the Orthosis interface and modifying the OpenSim model. The examples below illustrate different possibilities.
 
@@ -36,6 +35,8 @@ Complete the function [rubberBandBetweenAnkles](./rubberBandBetweenAnkles.m) and
 
 Fig 1. Sketch of relevant vectors for calculation.
 
+The rubber band wraps around the ankles at 40 cm below the knee joint centre. i.e. position `[0,-0.4,0]` in `tibia_r` and `tibia_r`.
+
 Assume the rubber band is a linear spring. The force is then given by: $F = K*(l-l_0) \quad if \ l-l_0 > 0$
 
 In the 2D example model, the distance between the ankles ($l$) is always greater than 16 cm. If $l_0$ is below this value, you can ignore the tension-only constraint on the force.
@@ -47,6 +48,19 @@ Have the results file include the length and force of the rubber band (see `help
 
 Example 1 and 2 assume the orthoses are massless. To model the mass and inertia, they need to be included in the OpenSim model.
 
+Consider an ankle exoskeleton that consists of two parts: shank and foot.
+shank is rigidly connected to the tibia and has
+- mass = 0.44 kg
+- mass centre = [0, -0.2, 0] m
+- inertia = [0.0073 0.0027 0.0066 0 0 0] kgm²
+
+foot is rigidly connected to the calcn and has
+- mass = 0.44 kg
+- COM = [0.044, 0.030, 0] m
+- inertia = [0.0021 0.0068 0.0050 0 0 0] kgm²
+
+Add this exoskeleton to the model (bilaterally)
+
 1. Create a copy of PredSim/Subjects/gait1018/gait1018.osim, e.g. gait1018_exoMass1.osim, in the same folder.
 2. In the new model, create a new Body (mass, inertia) for each part of the orthosis, and connect it to another body with a WeldJoint (= rigid connection).
 Possible ways to adapt an OpenSim model include:
@@ -57,4 +71,3 @@ Possible ways to adapt an OpenSim model include:
 
 *Important:* if you want to change any of the OpenSim model parameters, create a new model with a different name.
 
-## Example 4. Walking with crutches
