@@ -1,10 +1,33 @@
-# Modelling neuromusculoskeletal defictis
+# Modelling neuromusculoskeletal deficits
 
-Physics-based computer simulations that can predict the effect of treatments (e.g., bony and soft tissue correction, ankle-foot-orthoses) on gait in children with cerebral palsy (CP) have the potential to improve the clinical decision-making. To this end, an important challenge is to accurately personalise patient-specific neuromusculoskeletal models.
+Physics-based computer simulations that can predict the effect of treatments (e.g., bony and soft tissue correction, ankle-foot-orthoses) on gait in children with cerebral palsy (CP) have the potential to improve clinical decision-making. To this end, an important challenge is to accurately personalise patient-specific neuromusculoskeletal models.
 
 ## Example 1. Modelling msk impairments from clinical exam
 
-(Description)
+The clinical exam is part of children's usual clinical care and consists of an extensive examination of
+
+Passive range of motion and muscle strength scores are provided in the 'Clinical Exam'/BCN_CP#:
+
+1. Passive range of motion (pROM)
+- Soleus (Silfversköld Test):
+	The patient lies supine, with one knee flexed at 90°. The ankle is moved into maximal dorsiflexion. The maximal dorsiflexion angle is measured (evaluation of the length of soleus). The typical value for dorsiflexion in this 	situation is 20 to 30 °. (pROM_Ankledf 90_#side)
+- Gastrocnemii (Silfversköld Test): 
+	Tested in a similar position as Soleus. The knee is moved in full extension. At that time we can evaluate whether the length of the gastrocnemius limits the ankle motion, thereby decreasing the maximal dorsiflexion angle. The typical value 	for dorsiflexion in this situation is 	10 to 20°. (pROM_Ankledf 0_#side)
+- Hamstrings (popliteal angle - bilateral):
+	The patient lies supine. The evaluated limb is flexed at the level of the hip. The contralateral limb is flexed. Starting from knee flexion, the knee of the evaluated limb is moved into maximum extension. The deficit until full knee extension is noted (as a negative angle: lack to full extension). The typical value for the bilateral test is -15° to -0°. (p_ROM_Poplbi_#side)
+	
+2. Strength
+	Strength is evaluated by manual muscle testing. The strength 	is evaluated for the full active range of motion. 
+ 	
+	Stength scores:
+	1 - Evidence of slight contraction of the muscle but joint 	motion is not visible
+	2 - Complete range of motion in gravity eliminated plane
+	3 - Perfect motion against gravity 
+	4 - Motion against gravity with some (moderate resistance)
+	5 - Motion against gravity with maximal resistance
+
+For this example, you will need the code example_mskClinicalExam. The code will guide you through the estimation. You have to edit the code, inbetween % ------ start edit ----- and % ----- end edit -----
+ 
 
 ## Example 2. Modelling msk impairments from data-driven EMG torque relationships
 
@@ -23,11 +46,11 @@ Scores from two clinical tests that evaluate motor control are provided in 'Clin
 2. Selective test (scores explanation)
     0: no selective control, no (or minimal) contraction of some of the demanded muscles
     0.5: small contraction, but almost no motion, and/or a lot of co-contraction
-    1: mild selective control, not all muscles working in a correct way, no smoot motion, with co-contraction (not always), limited range
+    1: mild selective control, not all muscles working in a correct way, no smooth motion, with co-contraction (not always), limited range
     1.5 good co-contraction with correct muscles
     2: perfect control, perfect contraction with correct muscles
 
-Results from the synergy analysys are provided in 'Models/BCN_CP#' folder:
+Results from the synergy analyses are provided in 'Models/BCN_CP#' folder:
 Muscle synergies were extracted from the EMG signals of eight muscles using non-negative matrix factorisation. We selected the number of synergies that were needed to explain at least 90% of the variance accounted for (VAF) of the measured EMG. 
 The eight measured muscles, for which the synergy analysis has been done, are: 'rect_fem', 'vasti_r', 'bifemsh_r', 'hamstrings_r', 'tib_ant_r', 'gastroc_r', 'soleus_r', 'glut_max_r'. The provided results in 'BCN_CP#_Syn.mat' are:
 1. Number of synergies per leg (SynN.R and SynN.L)
