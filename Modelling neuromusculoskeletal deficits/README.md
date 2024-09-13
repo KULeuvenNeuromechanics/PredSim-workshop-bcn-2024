@@ -20,7 +20,7 @@ I. Passive range of motion (pROM)
 II. Strength
 	Strength is evaluated by manual muscle testing. The strength is evaluated for the full active range of motion. 
  	
-	Stength scores:
+	Strength scores:
 	1. Evidence of slight contraction of the muscle but joint motion is not visible
 	2. Complete range of motion in gravity eliminated plane
 	3. Perfect motion against gravity 

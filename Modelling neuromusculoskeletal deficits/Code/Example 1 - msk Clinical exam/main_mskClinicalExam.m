@@ -276,5 +276,5 @@ S.subject.scale_MT_params = {{'soleus_r'},'lMo',1,...
 
 %% 6. Save S
 save(fullfile(PredSim_path,'Subjects',subject_name,[subject_name,'.mat']),"S");
-%% Lets run predictive simulations with personalized muscle parameters!
+%% Now you are able to run predictive simulations with personalized muscle parameters!
 

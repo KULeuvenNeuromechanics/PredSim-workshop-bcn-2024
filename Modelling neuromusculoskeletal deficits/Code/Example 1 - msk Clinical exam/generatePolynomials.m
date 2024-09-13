@@ -1,4 +1,4 @@
-function [f_lMT_vMT_dM, model_info] = generatePolynomials(subject_name, osim_path, pathPredSim)
+function [f_lMT_vMT_dM, model_info,coordinates] = generatePolynomials(subject_name, osim_path, pathPredSim)
 % --------------------------------------------------------------------------
 % generatePolynomials
 %   Generate polynomials to describe musculoskeletal geometry of a model.
@@ -24,6 +24,9 @@ function [f_lMT_vMT_dM, model_info] = generatePolynomials(subject_name, osim_pat
 % 
 % Original author: Lars D'Hondt
 % Original date: 13 September 2024
+
+% Last edit by: Ellis Van Can
+% Last edit date: September 13, 2024
 % --------------------------------------------------------------------------
 
 addpath(pathPredSim)
@@ -49,5 +52,14 @@ addpath([S.misc.main_path '\CasadiFunctions'])
 % create casadi function for polynomials
 f_lMT_vMT_dM = createCasadi_MSKGeometry(S,model_info);
 
-
+% get model coordinates
+import org.opensim.modeling.*
+model = Model(osim_path);
+coordinateSet = model.getCoordinateSet();
+numCoordinates = coordinateSet.getSize();
+coordinates = cell(1,numCoordinates);
+for i = 0:numCoordinates-1
+    coordinate = coordinateSet.get(i);
+    coordinates{i+1} = char(coordinate.getName());
+end
 end
