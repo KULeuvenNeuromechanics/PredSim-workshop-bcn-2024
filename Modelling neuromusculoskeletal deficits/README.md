@@ -4,7 +4,7 @@ Physics-based computer simulations that can predict the effect of treatments (e.
 
 ## Example 1. Modelling msk impairments from clinical exam
 
-The clinical exam is part of children's usual clinical care and is a comprehensive assesment of musculoskeletal functioning. In example 1. you will use (I.) passive Range of Motion (ROM) and (II.) to personalize optimal muscle force 
+The clinical exam is part of children's usual clinical care and is a comprehensive assesment of musculoskeletal functioning. In example 1. you will use (I.) passive Range of Motion (ROM) and (II.) to personalize optimal muscle force and optimal muscle fiber length, respectively.
 
 Passive range of motion and muscle strength scores are provided in the 'Clinical Exam'/BCN_CP#:
 
