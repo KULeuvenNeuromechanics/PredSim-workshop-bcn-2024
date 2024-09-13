@@ -20,11 +20,11 @@ Passive range of motion and muscle strength scores are provided in the 'Clinical
 	Strength is evaluated by manual muscle testing. The strength 	is evaluated for the full active range of motion. 
  	
 	Stength scores:
-	1 - Evidence of slight contraction of the muscle but joint 	motion is not visible
-	2 - Complete range of motion in gravity eliminated plane
-	3 - Perfect motion against gravity 
-	4 - Motion against gravity with some (moderate resistance)
-	5 - Motion against gravity with maximal resistance
+	1. - Evidence of slight contraction of the muscle but joint 	motion is not visible
+	2. - Complete range of motion in gravity eliminated plane
+	3. - Perfect motion against gravity 
+	4. - Motion against gravity with some (moderate resistance)
+	5. - Motion against gravity with maximal resistance
 
 For this example, you will need the code example_mskClinicalExam. The code will guide you through the estimation. You have to edit the code, inbetween % ------ start edit ----- and % ----- end edit -----
  
