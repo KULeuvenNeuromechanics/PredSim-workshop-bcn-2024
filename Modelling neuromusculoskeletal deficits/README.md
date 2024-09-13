@@ -4,7 +4,7 @@ Physics-based computer simulations that can predict the effect of treatments (e.
 
 ## Example 1. Modelling msk impairments from clinical exam
 
-The clinical exam is part of children's usual clinical care and consists of an extensive examination of
+The clinical exam is part of children's usual clinical care and is a comprehensive assesment of musculoskeletal functioning. In example 1. you will use (I.) passive Range of Motion (ROM) and (II.) to personalize optimal muscle force 
 
 Passive range of motion and muscle strength scores are provided in the 'Clinical Exam'/BCN_CP#:
 
@@ -18,16 +18,17 @@ I. Passive range of motion (pROM)
 	
 
 II. Strength
-	Strength is evaluated by manual muscle testing. The strength 	is evaluated for the full active range of motion. 
+	Strength is evaluated by manual muscle testing. The strength is evaluated for the full active range of motion. 
  	
 	Stength scores:
-	1. Evidence of slight contraction of the muscle but joint 	motion is not visible
+	1. Evidence of slight contraction of the muscle but joint motion is not visible
 	2. Complete range of motion in gravity eliminated plane
 	3. Perfect motion against gravity 
 	4. Motion against gravity with some (moderate resistance)
 	5. Motion against gravity with maximal resistance
 
-For this example, you will need the code example_mskClinicalExam. The code will guide you through the estimation. You have to edit the code, inbetween % ------ start edit ----- and % ----- end edit -----
+In this example, the code main_mskClinicalExam.m (PredSim-workshop-bcn-2024/Modelling neuromusculoskeletal deficits/Code/Example 1 - msk Clinical exam) .
+will guide you through the estimation process. You only have to edit the lines of code that are inbetween % ------ start edit ----- and % ----- end edit -----
  
 
 ## Example 2. Modelling msk impairments from data-driven EMG torque relationships
