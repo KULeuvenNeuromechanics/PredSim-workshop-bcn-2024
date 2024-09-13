@@ -8,7 +8,7 @@ The clinical exam is part of children's usual clinical care and consists of an e
 
 Passive range of motion and muscle strength scores are provided in the 'Clinical Exam'/BCN_CP#:
 
-1. Passive range of motion (pROM)
+I. Passive range of motion (pROM)
 - Soleus (Silfversköld Test):
 	The patient lies supine, with one knee flexed at 90°. The ankle is moved into maximal dorsiflexion. The maximal dorsiflexion angle is measured (evaluation of the length of soleus). The typical value for dorsiflexion in this 	situation is 20 to 30 °. (pROM_Ankledf 90_#side)
 - Gastrocnemii (Silfversköld Test): 
@@ -16,15 +16,16 @@ Passive range of motion and muscle strength scores are provided in the 'Clinical
 - Hamstrings (popliteal angle - bilateral):
 	The patient lies supine. The evaluated limb is flexed at the level of the hip. The contralateral limb is flexed. Starting from knee flexion, the knee of the evaluated limb is moved into maximum extension. The deficit until full knee extension is noted (as a negative angle: lack to full extension). The typical value for the bilateral test is -15° to -0°. (p_ROM_Poplbi_#side)
 	
-2. Strength
+
+II. Strength
 	Strength is evaluated by manual muscle testing. The strength 	is evaluated for the full active range of motion. 
  	
 	Stength scores:
-	1. - Evidence of slight contraction of the muscle but joint 	motion is not visible
-	2. - Complete range of motion in gravity eliminated plane
-	3. - Perfect motion against gravity 
-	4. - Motion against gravity with some (moderate resistance)
-	5. - Motion against gravity with maximal resistance
+	1. Evidence of slight contraction of the muscle but joint 	motion is not visible
+	2. Complete range of motion in gravity eliminated plane
+	3. Perfect motion against gravity 
+	4. Motion against gravity with some (moderate resistance)
+	5. Motion against gravity with maximal resistance
 
 For this example, you will need the code example_mskClinicalExam. The code will guide you through the estimation. You have to edit the code, inbetween % ------ start edit ----- and % ----- end edit -----
  
