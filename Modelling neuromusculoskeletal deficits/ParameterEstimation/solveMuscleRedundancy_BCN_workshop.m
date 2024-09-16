@@ -201,29 +201,7 @@ Misc.noSOMRS = 0;
 if Misc.normalizeEMG
     DatStore = normalizeEMG(Misc,DatStore,Results);
 end
-% save(fullfile(Misc.OutPath,['data_' Misc.subjectName '.mat']),'DatStore','Misc','Results')
-% %% Normalize EMG data based on the MRS solution without EMG constraints
-% if Misc.boolEMG    
-%     if Misc.normalizeToMRS
-%         % compute the maximal activation in the MRS solution without EMG
-%         % constraints
-%         maxMRS = nan(Misc.nAllMuscList,1);
-%         for t = Misc.trials_sel
-%             for m=1:NMuscles(t)
-%                 idx_m = Misc.idx_allMuscleList{t}(m);
-%                 maxMRS(idx_m,1) = max(maxMRS(idx_m,1),max(Results.MActivation(t).genericMRS(m,:)));
-%             end
-%         end
-%         % loop over all trials to mutliple the EMG values with maxRMS
-%         for t = Misc.trials_sel
-%             for m=1:DatStore(t).EMG.nEMG
-%                 idx_m = Misc.idx_EMGsel{t}(m,1);
-%                 DatStore(t).EMG.EMGsel(:,m) = DatStore(t).EMG.EMGsel(:,m).*maxMRS(idx_m,1);
-%             end
-%         end  
-%     end    
-% end
-    
+
 %% Dynamic Optimization - Parameter estimation
 % ----------------------------------------------------------------------- %
 
