@@ -69,5 +69,13 @@ Possible ways to adapt an OpenSim model include:
     - write matlab code that uses the OpenSim api to adapt the model: if you are feeling adventurous
 3. Run [example_3](./example_3.m)
 
+#### OpenSim Creator
+1. Add body
+    - Add > Body > pop-up > + add body
+2. Visualisation (optional)
+    - Navigator: bodyset: exoFoot_r (right-click) > Add Offset Frame
+    - Navigator: bodyset: exoFoot_r: exoFoot_r_offsetframe (right-click) > Add Geometry
+    - Use properties of offsetframe and geometry to change  position, orientation and size
+
 *Important:* if you want to change any of the OpenSim model parameters, create a new model with a different name.
 
