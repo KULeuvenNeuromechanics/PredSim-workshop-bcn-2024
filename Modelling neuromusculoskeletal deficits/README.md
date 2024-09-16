@@ -33,7 +33,34 @@ will guide you through the estimation process. You only have to edit the lines o
 
 ## Example 2. Modelling msk impairments from data-driven EMG torque relationships
 
-(Description)
+Mechanical properties of muscles in children with CP are often altered. This code allows users to estimate the optimal fiber length, tendon slack length and tendon stiffness of each muscle such that the EMG-torque relationship across each joint can be satisfied. The code used for estimating these properties is available on https://github.com/KULeuvenNeuromechanics/MuscleRedundancySolver. This example will use data of walking gait and clinical tests to estimate the muscle-tendon properties for two children with CP. Data of two clinical tests are used. Instrumented passive Spasticity Assessment (IPSA) [Bar-On et al., 2013] and pendulum test [Fowler et al., 2000].
+Data: Experiments record the EMG of major muscle groups is measured along with movement data and external forces for each trial. Movement data and external forces can then be used to run inverse kinematics and inverse dynamics to get the joint torques. These data along with the scaled OpenSim models for both patients is provided. 
+Requirements: OpenSim, CasADi, clone of https://github.com/KULeuvenNeuromechanics/MuscleRedundancySolver repository.
+How to use the code:
+Required inputs:
+In the code ParameterEstimation_BCN_workshop.m, specify the following:
+1.	Subject name: either ‘CP1’ or ‘CP2’. 
+2.	Path of your local directory of ParameterEstimation
+3.	Path of your CasADi folder
+4.	Path of the directory of MuscleRedundancySolver.
+5.	A name to your analysis in Misc.AnalysisID
+Optional inputs:
+All the optional inputs are described on the https://github.com/KULeuvenNeuromechanics/MuscleRedundancySolver page and can be changed in the ParameterEstimation.m file.
+Outputs:
+The code will save the estimated muscle parameters, the data and settings in a .mat file. The code will also write the estimated optimal fiber length and estimated tendon slack length to the OpenSim model called BCN_CP<1 or 2>_<Misc.AnalysisID>_paramEst.osim. The code will also write the scaling factors of the optimal fiber length, tendon slack length and tendon stiffness in .mat files called BCN_CP<1 or 2>_<Misc.AnalysisID>_paramEst_optimal_fiber_length_scale.mat, BCN_CP<1 or 2>_<Misc.AnalysisID>_paramEst_tendon_slack_length_scale.mat, and BCN_CP<1 or 2>_<Misc.AnalysisID>_paramEst_tendon_stiffness_scale.mat.
+Users have two options to run PredSim with the updated parameters.
+1.	Use the updated OpenSim model (OpenSim model called BCN_CP<1 or 2>_<Misc.AnalysisID>_paramEst.osim) that has the estimated optimal fiber length and estimated tendon slack length already written in it, along with BCN_CP<1 or 2>_<Misc.AnalysisID>_paramEst_tendon_stiffness_scale.mat' to set the S.subject.tendon_stiff_scale setting in PredSim.
+2.	Use the .mat files corresponding to estimated scaling factors of optimal fiber length and tendon slack length (BCN_CP<1 or 2>_<Misc.AnalysisID>_paramEst_optimal_fiber_length_scale.mat and BCN_CP<1 or 2>_<Misc.AnalysisID>_paramEst_tendon_slack_length_scale.mat) to set the subject.scale_MT_param setting of PredSim, along with BCN_CP<1 or 2>_<Misc.AnalysisID>_paramEst_tendon_stiffness_scale.mat to set the S.subject.tendon_stiff_scale setting in PredSim.
+
+Results Analyses:
+After generating PredSim simulations, users can use the plotPredSimResults.m file to compare their results to IK results and result of PredSim run without any parameters estimated. Users are allowed to compared multiple PredSim outputs at the same time. User can run multiple parameter estimations with varying settings and then the corresponding PredSim. This code can then be used to analyze how the predicted kinematics change with the different settings. The plotPredSimResults.m has the following required settings;
+1.	subect: Subject name ‘CP1’ or ‘CP2’
+2.	paramEstModelName: Names of the OpenSim models used to run the PredSim of each of the comparison.
+3.	paramEstSuffix: PredSim outputs are followed by v<number> or job<number>. Please add this information here for each result
+4.	modelLegend: name that the user want to add to identify each PredSim result
+5.	pathParamEst: path of ParameterEstimation folder
+6.	predsimResultsPath: path of PredSimResults folder where the PredSim results get stored
+
 
 
 
