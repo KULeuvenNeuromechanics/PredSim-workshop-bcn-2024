@@ -34,9 +34,13 @@ will guide you through the estimation process. You only have to edit the lines o
 ## Example 2. Modelling msk impairments from data-driven EMG torque relationships
 
 Mechanical properties of muscles in children with CP are often altered. This code allows users to estimate the optimal fiber length, tendon slack length and tendon stiffness of each muscle such that the EMG-torque relationship across each joint can be satisfied. The code used for estimating these properties is available on https://github.com/KULeuvenNeuromechanics/MuscleRedundancySolver. This example will use data of walking gait and clinical tests to estimate the muscle-tendon properties for two children with CP. Data of two clinical tests are used. Instrumented passive Spasticity Assessment (IPSA) [Bar-On et al., 2013] and pendulum test [Fowler et al., 2000].
+
 Data: Experiments record the EMG of major muscle groups is measured along with movement data and external forces for each trial. Movement data and external forces can then be used to run inverse kinematics and inverse dynamics to get the joint torques. These data along with the scaled OpenSim models for both patients is provided. 
+
 Requirements: OpenSim, CasADi, clone of https://github.com/KULeuvenNeuromechanics/MuscleRedundancySolver repository.
+
 How to use the code:
+
 Required inputs:
 In the code ParameterEstimation_BCN_workshop.m, specify the following:
 1.	Subject name: either ‘CP1’ or ‘CP2’. 
@@ -44,8 +48,10 @@ In the code ParameterEstimation_BCN_workshop.m, specify the following:
 3.	Path of your CasADi folder
 4.	Path of the directory of MuscleRedundancySolver.
 5.	A name to your analysis in Misc.AnalysisID
+
 Optional inputs:
 All the optional inputs are described on the https://github.com/KULeuvenNeuromechanics/MuscleRedundancySolver page and can be changed in the ParameterEstimation.m file.
+
 Outputs:
 The code will save the estimated muscle parameters, the data and settings in a .mat file. The code will also write the estimated optimal fiber length and estimated tendon slack length to the OpenSim model called BCN_CP<1 or 2>_<Misc.AnalysisID>_paramEst.osim. The code will also write the scaling factors of the optimal fiber length, tendon slack length and tendon stiffness in .mat files called BCN_CP<1 or 2>_<Misc.AnalysisID>_paramEst_optimal_fiber_length_scale.mat, BCN_CP<1 or 2>_<Misc.AnalysisID>_paramEst_tendon_slack_length_scale.mat, and BCN_CP<1 or 2>_<Misc.AnalysisID>_paramEst_tendon_stiffness_scale.mat.
 Users have two options to run PredSim with the updated parameters.
@@ -96,3 +102,7 @@ In the example, two types of predictive simulations (additionally to the baselin
 Fowler, E. G., Staudt, L. A., Greenberg, M. B., & Oppenheim, W. L. (2009). Selective Control Assessment of the Lower Extremity (SCALE): development, validation, and interrater reliability of a clinical tool for patients with cerebral palsy. Developmental Medicine & Child Neurology, 51(8), 607-614.
 
 M.H. Schwartz, A. Rozumalski, K.M. Steele, ”Dynamic motor control is associated with treatment outcomes for children with cerebral palsy,” Dev. Medicine & Child Neurology, 58(11), 2016, 1139-1145
+
+Bar-On, R., & Fiedeldey-Van Dijk, C. (2022). The Bar-On model and multifactor measure of human performance: Validation and application. Frontiers in psychology, 13, 872360.
+
+Fowler, E. G., Nwigwe, A. I., & Ho, T. W. (2000). Sensitivity of the pendulum test for assessing spasticity in persons with cerebral palsy. Developmental medicine and child neurology, 42(3), 182-189.
