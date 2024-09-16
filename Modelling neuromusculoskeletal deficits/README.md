@@ -54,6 +54,8 @@ All the optional inputs are described on the https://github.com/KULeuvenNeuromec
 
 **Outputs:**
 The code will save the estimated muscle parameters, the data and settings in a .mat file. The code will also write the estimated optimal fiber length and estimated tendon slack length to the OpenSim model called BCN_CP<1 or 2>_<Misc.AnalysisID>_paramEst.osim. The code will also write the scaling factors of the optimal fiber length, tendon slack length and tendon stiffness in .mat files called BCN_CP<1 or 2>_<Misc.AnalysisID>_paramEst_optimal_fiber_length_scale.mat, BCN_CP<1 or 2>_<Misc.AnalysisID>_paramEst_tendon_slack_length_scale.mat, and BCN_CP<1 or 2>_<Misc.AnalysisID>_paramEst_tendon_stiffness_scale.mat.
+
+**Running PredSim with estimated muscle-tendon paramters:**
 Users have two options to run PredSim with the updated parameters.
 1.	Use the updated OpenSim model (OpenSim model called BCN_CP<1 or 2>_<Misc.AnalysisID>_paramEst.osim) that has the estimated optimal fiber length and estimated tendon slack length already written in it, along with BCN_CP<1 or 2>_<Misc.AnalysisID>_paramEst_tendon_stiffness_scale.mat' to set the S.subject.tendon_stiff_scale setting in PredSim.
 2.	Use the .mat files corresponding to estimated scaling factors of optimal fiber length and tendon slack length (BCN_CP<1 or 2>_<Misc.AnalysisID>_paramEst_optimal_fiber_length_scale.mat and BCN_CP<1 or 2>_<Misc.AnalysisID>_paramEst_tendon_slack_length_scale.mat) to set the subject.scale_MT_param setting of PredSim, along with BCN_CP<1 or 2>_<Misc.AnalysisID>_paramEst_tendon_stiffness_scale.mat to set the S.subject.tendon_stiff_scale setting in PredSim.
