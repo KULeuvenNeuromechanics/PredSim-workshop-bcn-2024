@@ -50,6 +50,8 @@ In the code ParameterEstimation_BCN_workshop.m, specify the following:
 5.	A name to your analysis in Misc.AnalysisID
 6.	Path of the data folders in Misc.DataPath
 
+**NOTE:** Please refrain from putting the codes deep in your folder structures since OpenSim's Muscle Analysis is runin this example which generates long filenames. If the file name is too long, sometimes the does not get written. 
+
 **Optional inputs:**
 All the optional inputs are described on the https://github.com/KULeuvenNeuromechanics/MuscleRedundancySolver page and can be changed in the ParameterEstimation.m file.
 
