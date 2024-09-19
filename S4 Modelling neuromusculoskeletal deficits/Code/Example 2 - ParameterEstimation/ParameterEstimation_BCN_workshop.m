@@ -15,7 +15,7 @@ clear all; clc; close all;
 Misc.subjectName = 'CP1';
 
 % path of ParameterEstimation folder
-pathParamEst = 'C:\Users\u0145647\OneDrive - KU Leuven\KU Leuven\BCN_Workshop\ParameterEstimation';
+pathParamEst = 'C:\Users\u0145647\OneDrive - KU Leuven\KU Leuven\BCN_workshop_full\PredSim-workshop-bcn-2024\S4. Modelling neuromusculoskeletal deficits\Code\Example 2 - ParameterEstimation';
 
 % path of MuscleRedundancySolver folder
 pathMRS = 'C:\Users\u0145647\OneDrive - KU Leuven\KU Leuven\BCN_Workshop\ParameterEstimation\MuscleRedundancySolver';
@@ -26,14 +26,16 @@ Misc.casadiPath = 'C:\GBW_MyPrograms\casadi_3_6_5';
 % Name given to the estimation you run
 Misc.AnalysisID = 'v1'; 
 
+% path to the data folder
+Misc.DataPath = fullfile('C:\Users\u0145647\OneDrive - KU Leuven\KU Leuven\BCN_workshop_full\PredSim-workshop-bcn-2024\S4. Modelling neuromusculoskeletal deficits\Data',['Data_' Misc.subjectName]);
+
 
 
 
 %% Setup 
-Misc.DataPath = fullfile(pathParamEst,['Data_' Misc.subjectName]);
 Misc.model_path = fullfile(Misc.DataPath,'Model',['BCN_' Misc.subjectName '_PredSim_noSphere.osim']);
-Misc.OutPath = fullfile(pathParamEst,['ResultsTest_' Misc.subjectName]); % folder to store results
-addpath(genpath(fullfile(pathParamEst,'MuscleRedundancySolver')));
+Misc.OutPath = fullfile(pathParamEst,['Results_' Misc.subjectName]); % folder to store results
+addpath(genpath(pathMRS));
 
 Misc.timePointsFile = ['timepoints_all_' Misc.subjectName '.xlsx'];
 
@@ -43,9 +45,9 @@ trialTypes_functional = {'s2s','sit2stand','stand2sit','gait_normal','gait_fast'
 trialInfo = readtable(fullfile(Misc.DataPath,Misc.timePointsFile));
 time = [trialInfo.IC1 trialInfo.IC2];
 Misc.trialName = trialInfo.Trial';
-Misc.IKfile = strcat(pathParamEst,'\',trialInfo.IKfile)';
-Misc.IDfile = strcat(pathParamEst,'\',trialInfo.IDfile)';
-Misc.EMGfile = strcat(pathParamEst,'\',trialInfo.EMGfile)';
+Misc.IKfile = strcat(Misc.DataPath,'\',trialInfo.IKfile)';
+Misc.IDfile = strcat(Misc.DataPath,'\',trialInfo.IDfile)';
+Misc.EMGfile = strcat(Misc.DataPath,'\',trialInfo.EMGfile)';
 Misc.side = lower(trialInfo.side)';
 Misc.trialType = trialInfo.movement';
 Misc.trialFP = trialInfo.FP;
