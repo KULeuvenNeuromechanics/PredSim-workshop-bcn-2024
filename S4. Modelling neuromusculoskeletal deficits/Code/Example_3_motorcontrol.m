@@ -10,11 +10,6 @@
 % Original date: 05/September/2024
 % --------------------------------------------------------------------------
 
-%% WARNING:
-% For now, the synergies are not implemented in PredSim main branch.
-% For running this example, you should use the code in
-% https://github.com/KULeuvenNeuromechanics/PredSim_private/tree/dev-synergies-MFN
-
 clear
 close all
 clc
@@ -24,19 +19,19 @@ clc
 % 1. Select the CP subject
 % Subject CP1 ('BCN_CP1')
 % Subject CP2 ('BCN_CP2')
-subject_name = 'BCN_CP1';
+subject_name = 'BCN_CP2';
 
 % 2. Select the type of simulation
 % No synergies ('NoSyn')
 % Imposing the number of synergies ('SynN')
 % Tracking synergy weights ('SynW')
-motor_control = 'NoSyn';
+motor_control = 'SynN';
 
 %% Initialize S
 
 % Full path to the folder containing the PredSim code
 % pathPredSim = 'C:\GBW_MyPrograms\PredSim-dev';
-pathPredSim = 'C:\Users\febre\Documents\GitHub\PredSim_private_repo_results\PredSim_private';
+pathPredSim = 'C:\Users\febre\Documents\GitHub\PredSim_repo_results\PredSim';
 
 % Add the PredSim folder to the matlab search path
 addpath(pathPredSim)
@@ -61,7 +56,7 @@ S.misc.main_path = pathPredSim;
 S.subject.name = subject_name;
 
 % Path to folder where simulation results should be saved
-S.subject.save_folder  = fullfile(pwd,'Results',S.subject.name);
+S.misc.save_folder  = fullfile(pwd,'Results',S.subject.name);
 
 % Since the model is not symmetric, we should do a full gait cycle
 % simulation
@@ -71,10 +66,10 @@ S.misc.gaitmotion_type = 'FullGaitCycle';
 %   Option 1: warm-start
 % Use a motion file with inverse kinematics of an average gait cycle of an
 % example subject.
-S.subject.IG_selection = fullfile(S.misc.main_path,'OCP','IK_Guess_Full_GC.mot');
+S.solver.IG_selection = fullfile(S.misc.main_path,'OCP','IK_Guess_Full_GC.mot');
 % Indicate that the motion file containt exactly 1 gait cycle.
 %   Note: Motion files with a PredSim result contain 2 gait cycles (200%)
-S.subject.IG_selection_gaitCyclePercent = 100;
+S.solver.IG_selection_gaitCyclePercent = 100;
 %   Option 2: cold-start
 % 'quasi-random' moves the model forward at the target velocity with all
 % coordinates in their default position.
@@ -82,7 +77,7 @@ S.subject.IG_selection_gaitCyclePercent = 100;
 
 % Path to the opensim model of the subject
 %   Note: The name of the file and folder do not have to match S.subject.name
-osim_path = fullfile(pathPredSim,'Subjects',S.subject.name,[S.subject.name '_PredSim.osim']);
+osim_path = fullfile(pwd,'..\Models\',S.subject.name,[S.subject.name '_PredSim.osim']);
 
 % Run the simulation as a batch job (parallel computing toolbox). This can
 % be useful when running many simulations.
@@ -107,7 +102,7 @@ S.OpenSimADOptions.verbose_mode = false;
 
 %% Synergy-related inputs
 % Load the synergy analysis results. Update path if needed
-load(fullfile(pathPredSim,'Subjects',S.subject.name,[S.subject.name,'_Syn.mat']))
+load(['..\Models\',S.subject.name,'\',S.subject.name,'_Syn.mat'])
 switch motor_control
     case 'NoSyn'
         S.subject.synergies = 0; % 1 = implement muscle synergies
