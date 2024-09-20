@@ -1,15 +1,12 @@
 # S5 Mechanistic muscle models
 
-In this hands-on tutorial, you will compare phenomenological Hill-type muscle models (used in PredSim & OpenSim) to mechanistic muscle models.
-Specifically, 2-state crossbridge models of [Huxley (1957)](https://pubmed.ncbi.nlm.nih.gov/13485191/) are evalulated. 
-While mechanistic crossbridge models have not yet been incoorporated into the PredSim framework (this is work in progress), this tutorial provides code to run forward simulations with these models. 
-The models are based on a recent [publication](https://doi.org/10.1242/jeb.247436), with associated [BioRxiv pre-print](https://www.biorxiv.org/content/10.1101/2024.08.07.606988v1)
-and [code repository](https://github.com/timvanderzee/CaFaXC). 
+This hands-on tutorial is an introduction into mechanistic muscle models. 
+In the tutorial, you will compare the 2-state crossbridge model of [Huxley (1957)](https://pubmed.ncbi.nlm.nih.gov/13485191/) to existing phenomenological Hill-type muscle models (used in PredSim & OpenSim). While mechanistic crossbridge models have not yet been incoorporated into the PredSim framework (this is work in progress), this tutorial provides custom code to run forward simulations with these models. The mechanistic muscle modeling framework is based on [van der Zee et al., (2024)](https://doi.org/10.1242/jeb.247436), and the associated [CaFaXC muscle model](https://github.com/timvanderzee/CaFaXC). 
 
 ## Background
 Crossbridges are the molecular motors underlying muscle contraction, force production and energy consumption. 
-Force is produced when crossbridge attach and subsequently rotate, resulting in a pull on the actin filament.
-Energy is required (from ATP) for detaching the crossbridge.
+Force is produced when crossbridges attach and rotate, resulting in a pull on the actin filament.
+Energy is required (from ATP) for crossbridge detachment.
 
 ![picture](crossbridge_animation.gif)
 
