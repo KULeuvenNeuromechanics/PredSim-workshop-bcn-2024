@@ -68,11 +68,11 @@ Users have two options to run PredSim with the updated parameters.
 
 **Results Analyses:**
 After generating PredSim simulations, users can use the plotPredSimResults.m file to compare their results to IK results and result of PredSim run without any parameters estimated. Users are allowed to compared multiple PredSim outputs at the same time. User can run multiple parameter estimations with varying settings and then the corresponding PredSim. This code can then be used to analyze how the predicted kinematics change with the different settings. The plotPredSimResults.m has the following required settings;
-1.	subect: Subject name ‘CP1’ or ‘CP2’
+1.	subject: Subject name ‘CP1’ or ‘CP2’
 2.	paramEstModelName: Names of the OpenSim models used to run the PredSim of each of the comparison.
 3.	paramEstSuffix: PredSim outputs are followed by v<number> or job<number>. Please add this information here for each result
 4.	modelLegend: name that the user want to add to identify each PredSim result
-5.	pathParamEst: path of ParameterEstimation folder
+5.	Path of your local directory of `PredSim-workshop-bcn-2024\S4 Modelling neuromusculoskeletal deficits`
 6.	predsimResultsPath: path of PredSimResults folder where the PredSim results get stored
 
 
