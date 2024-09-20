@@ -172,9 +172,9 @@ Misc.PlotBool = 0;
 % MRS Bool: Select if you want to run the generic muscle redundancy solver
 Misc.MRSBool = 0;
 % Validation Bool: Select if you want to run the muscle redundancy solver with the optimized parameters
-Misc.ValidationBool = 0; 	% TO DO: we should report results of EMG driven simulation as well
+Misc.ValidationBool = 0; 	
 
-Misc.Mesh_Frequency = 25;
+Misc.Mesh_Frequency = 50;
 
 
 %% Run muscle tendon parameter estimator
