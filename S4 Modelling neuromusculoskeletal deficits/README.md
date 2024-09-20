@@ -6,30 +6,36 @@ Physics-based computer simulations that can predict the effect of treatments (e.
 
 The clinical exam is part of children's usual clinical care and is a comprehensive assesment of musculoskeletal functioning. In example 1. you will use (I.) manual muscle testing strength scores and (II.) passive Range of Motion (ROM) scores to personalize optimal muscle force and optimal muscle fiber length, respectively.
 
-### I. Strength is evaluated by manual muscle testing. The strength is evaluated for the full active range of motion. 
+**Data:** Passive range of motion and muscle strength scores, provided in the subfolder 'Clinical Exam'/BCN_CP#:
+
+### I. Strength
+The strength is evaluated for the full active range of motion by manual muscle testing. 
  	
-Strength scores:
+Strength scores indicate:
 	1. Evidence of slight contraction of the muscle but joint motion is not visible
 	2. Complete range of motion in gravity eliminated plane
 	3. Perfect motion against gravity 
 	4. Motion against gravity with some (moderate resistance)
 	5. Motion against gravity with maximal resistance
 
-
-Passive range of motion and muscle strength scores are provided in the 'Clinical Exam'/BCN_CP#:
-
 ### II. Passive range of motion (pROM)
 - Soleus (Silfversköld Test):
 	The patient lies supine, with one knee flexed at 90°. The ankle is moved into maximal dorsiflexion. The maximal dorsiflexion angle is measured (evaluation of the length of soleus). The typical value for dorsiflexion in this situation is 20 to 30 °. (pROM_Ankledf 90_#side)
 - Gastrocnemii (Silfversköld Test): 
-	Tested in a similar position as Soleus. The knee is moved in full extension. At that time we can evaluate whether the length of the gastrocnemius limits the ankle motion, thereby decreasing the maximal dorsiflexion angle. The typical value 	for dorsiflexion in this situation is 	10 to 20°. (pROM_Ankledf 0_#side)
+	Tested in a similar position as Soleus. The knee is moved in full extension. At that time we can evaluate whether the length of the gastrocnemius limits the ankle motion, thereby decreasing the maximal dorsiflexion angle. The typical value for dorsiflexion in this situation is 	10 to 20°. (pROM_Ankledf 0_#side)
 - Hamstrings (popliteal angle - bilateral):
 	The patient lies supine. The evaluated limb is flexed at the level of the hip. The contralateral limb is flexed. Starting from knee flexion, the knee of the evaluated limb is moved into maximum extension. The deficit until full knee extension is noted (as a negative angle: lack to full extension). The typical value for the bilateral test is -15° to -0°. (p_ROM_Poplbi_#side)
-	
 
-In this example, the code main_mskClinicalExam.m (PredSim-workshop-bcn-2024/Modelling neuromusculoskeletal deficits/Code/Example 1 - msk Clinical exam) .
-will guide you through the estimation process. You only have to edit the lines of code that are inbetween % ------ start edit ----- and % ----- end edit -----
+**Requirements:** OpenSim, CasADi.
+
+**How to use the code:**
+The code main_mskClinicalExam.m (PredSim-workshop-bcn-2024/Modelling neuromusculoskeletal deficits/Code/Example 1 - msk Clinical exam) guides the users through the estimation process. 
+Users only have to edit the lines of code that are inbetween % ------ start edit ----- and % ----- end edit -----
  
+**Running PredSim with estimated muscle-tendon parameters:**
+Users have two options to run PredSim with the updated parameters.
+1. 
+
 
 ## Example 2. Modelling msk impairments from data-driven EMG torque relationships
 
