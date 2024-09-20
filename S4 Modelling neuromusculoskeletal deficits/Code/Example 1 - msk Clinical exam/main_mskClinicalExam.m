@@ -7,13 +7,14 @@
 % 
 
 % Original authors: Bram Van Den Bosch, Ellis Van Can
-% Original date: September 13, 2024
+% Original date: September 20,2024
+
 clc; clear; close all
 %% 1. Add paths 
 
 % ------- start edit -------
-PredSim_path = 'C:\GBW_MyPrograms\PredSim'; 
-Seminar_path = 'C:\Users\u0167909\OneDrive - KU Leuven\Workshop BCN - Seminar model personalization';
+PredSim_path = 'C:\GBW_MyPrograms\PredSim'; % path to PredSim
+Seminar_path = 'C:\GBW_MyPrograms\PredSim-workshop-bcn-2024\S4 Modelling neuromusculoskeletal deficits'; % path to Seminar code
 % ------- stop edit -------
 
 addpath(genpath(PredSim_path));
@@ -21,6 +22,7 @@ addpath(genpath(Seminar_path));
 %% 2. Intialize settings
 % Subject CP1 ('BCN_CP1')
 % Subject CP2 ('BCN_CP2')
+
 % ------- start edit -------
 subject_name = 'BCN_CP1'; 
 % ------- stop edit -------
@@ -29,9 +31,15 @@ osim_path = fullfile(Seminar_path,'Models',subject_name,[subject_name,'_PredSim.
 
 % load model info
 [f_lMT_vMT_dM, model_info,coordinates] = generatePolynomials(subject_name, osim_path, PredSim_path);
-%% 3. Define muscle strength scaling factors for PredSim
 
-% Scale the maximal (active) muscle force based on the clinical exam:
+%% In step 3 and 4 you will work with the data from the Clinical Exam (CE)
+% Passive range of motion and muscle strength scores are provided in the 'Clinical Exam'/BCN_CP#:
+
+% NOTE: For convenience we put these two steps in this specific order but they can be performed independently
+%% 3. Define muscle strength scaling factors for PredSim
+% Scale the maximal (active) muscle force based on the strength scores in the CE
+
+% Clinical Exam to strength scaling factor reference
 %   CE        scaling factor
 %   1           0.1
 %   2           0.3
@@ -39,10 +47,14 @@ osim_path = fullfile(Seminar_path,'Models',subject_name,[subject_name,'_PredSim.
 %   4           0.7
 %   5           1
 
-% EXAMPLE: Clinical exam score 'strength_Hpext_R' = 3 
-% will be converted to S.settings.muscle_strength = {{'glut_max_r'},0.7}
+% EXAMPLE: 
+% CE score 'strength_Hpext_R' = 3 
+% Code:
+% S.settings.muscle_strength = {{'glut_max_r'},0.5}
+
 
 % ------- start edit -------
+
 S.settings.muscle_strength = {...       
     {'glut_max_r'},1,...                % R_hip_ext
     {'iliopsoas_r'},1,...               % R_hip_flex    
@@ -60,54 +72,49 @@ S.settings.muscle_strength = {...
 % ------- stop edit -------
 
 
-%% 4. find muscle fiber scaling factors
-% We scale optimal fiber length (lMo) as an estimate of muscle contractures (shortening of a
-% muscle)
+%% 4. Find muscle fiber scaling factors
+% We scale optimal fiber length (lMo) as an estimate of muscle contractures (shortening of a muscle)
+% You have to make code edits for part 4.1 and 4.2
 
-% Assume the eximator applies a torque of 15 Nm
-% Then the passive torque around the joint should be 15 Nm at the end of
-% the ROM observed during the clinical exam 
+%%% 4.2 Get the passive range of motion (pROM) scores from the clinical exam
 
-% The goal of  is to find the scaling factor (sf) that reflects this. 
-% In other words: find the line that goes through the crosssection of -15
-% Nm and the clinical exam angle
+% Do this for each muscle that deviates from typical values (see S4
+% Modelling neuromusculoskeletal deficits/README.md)
+% If CE value pROM = typical value, sf_lMo will remain 1
 
-% To find the sf you have to play a little with sf_lMo (line ...)
-% It can be useful to begin with a broader range, such as [0.7:0.1:1], and
-% then narrow it down.
+% Start with the most distal muscles.
 
-% Be aware that 15 NM is a rough estimate of the examinators torque and
-% this can vary between examinators and clinical examinations
-% Therefore, after a few tries, when you have a line that is very close to the cross section, this is sufficient
+% Do this for each side seperately
+
 % ------- start edit -------
 
-% NOTE 1: First do distal muscles, for 'hamstrings' you also need to specify your
-% found sf_lMo for the gastrocs as these also have an effect on knee ROM.
 muscle_toScale = 'soleus'; % Options: 'soleus', 'gastrocnemii', % hamstrings
-if contains(muscle_toScale,'hamstrings')
-    sf_lMo_gastrocnemii = 0.8;
-end
-
-% NOTE 2: you have to do this for each side seperately. When clinical exam angle = typical
-% value - sf can remain 1 and you dont have to do this estimation
 side = 'r'; % Options: 'l', 'r' 
 CE_angle = 10 ; % Passive ROM angle Clinical Exam
 
-% Define scaling factor range
-sf_lMo = flip([0.8:0.05:0.95]);  
-
 % ------- stop edit -------
 
-% get scaling factor
-%(length_subject * massa_subject)/(length_model * massa_model)
+% For scaling of the hamstrings, you also need to provide gastrocs
+% scaling factor as these also crosses the knee joint
+if contains(muscle_toScale,'hamstrings')
+    prompt = {'Enter scaling factors for gastrocnemii:'};
+    dlgtitle = 'sf_lMo_gastrocnemii';
+    dims = [1 60];
+    definput = {'1'};
+    sf_lMo_gastrocnemii = inputdlg(prompt, dlgtitle, dims, definput);
+end
+
+
+% Scale stiffness and damping of the joints (St) based on subject dimensions
+% For privacy reasons these St's are already provided
+% (length_subject * massa_subject)/(length_model * massa_model)
 if contains(subject_name,'BCN_CP1')
     S.subject.St = 0.994369501;
 elseif contains(subject_name,'BCN_CP2')
     S.subject.St = 0.909325513;
 end
 
-%%% Scaling settings
-% Angle + side
+% Put the model in Clinical Exam position if this deviates from supine
 if strcmp(muscle_toScale,'soleus')
             coord_name = 'ankle_angle';
             model_toDiffPos = 1;
@@ -125,26 +132,49 @@ end
 
 coord_name_side = [coord_name,'_',side];
 
-% joint index
+% Find joint index in coordinates
 idx_joint = find(strcmp(coordinates,coord_name_side));
 
 % Create Qs (joint angles) and Qdot (angular velocity)
 ROM = linspace((CE_angle-20)*pi/180,(CE_angle+20)*pi/180,25); % Range of motion
 n = length(ROM);
 
-
 Qs = zeros(n,length(coordinates));
 Qdots = zeros(n,length(coordinates));
 Qs(:,idx_joint) = ROM; 
 
-% Put model to position in CLinical exam if position is other than supine
 if model_toDiffPos
 Qs(:,strcmp(coordinates,model_changeAngle)) = ones(n,1)*(model_changeDeg*pi/180); %knee_angle_r 90°
 end
 
-%%% Scaling factors
-% set muscle parameters
-close all
+%%% 4.2 Evaluates scaling factor
+
+% Assume the eximator applies a torque of 15 Nm. 
+% Then the passive torque around the joint should be 15 Nm at the end of
+% the ROM observed during the clinical exam 
+
+% Find the scaling factor (sf) that reflects this 15 Nm. 
+% Then run the code and pick the right scaling factor from the figure 
+% (find the line that goes through the crosssection of -15 % Nm and the
+% clinical exam angle)
+
+% To find the sf you have to play a little with sf_lMo (line ...)
+% It can be useful to begin with a broader range, such as [0.7:0.1:1], and
+% then narrow it down.
+
+% NOTE: 15 NM is a rough estimate of the examinators torque and
+% this can vary between examinators and clinical examinations
+
+% ------- start edit -------
+
+% Define scaling factor range
+sf_lMo = flip([0.8:0.05:0.95]); 
+
+% ------- stop edit -------
+
+
+% Loop that evaluates the scaling factors
+close all % close previous figs
 for j = 1:length(sf_lMo)
     if strcmp(muscle_toScale,'soleus')
         scale.subject.scale_MT_params = {{['soleus_',side]},'lMo',sf_lMo(j)};
@@ -208,8 +238,8 @@ for j = 1:length(sf_lMo)
     stiffness_scale = struct_array_to_double_array(model_info.muscle_info.parameters,'muscle_pass_stiff_scale');
     strength = struct_array_to_double_array(model_info.muscle_info.parameters,'muscle_strength');
     
-    a = ones(18,1)*0.01; % activation
-    fse  = zeros(18,1); % tendon force-length characteristic 
+    a = ones(model_info.muscle_info.NMuscle,1)*0.01; % activation
+    fse  = zeros(model_info.muscle_info.NMuscle,1); % tendon force-length characteristic 
     dfse = 0;
     
     vMT  = 0; % MT velocity
@@ -217,9 +247,9 @@ for j = 1:length(sf_lMo)
     MuscMoAsmp = 0; % constant pennation angle
     d = 0.01; % muscle damping
     
-    lMT = zeros(18,n);
-    FT = zeros(n,18); 
-    M_muscle = zeros(18,n);
+    lMT = zeros(model_info.muscle_info.NMuscle,n);
+    FT = zeros(n,model_info.muscle_info.NMuscle); 
+    M_muscle = zeros(model_info.muscle_info.NMuscle,n);
     Tau_pass = zeros(1,n);
     
     for i=1:n
@@ -255,8 +285,6 @@ end
 
 title(['passive torque-angle relationship ',strrep(muscle_toScale, '_', ' '),' ', side]);
 xline(CE_angle, 'HandleVisibility','off');
-yline(-5, 'HandleVisibility','off');
-yline(-10, 'HandleVisibility','off');
 yline(-15, 'HandleVisibility','off');
 ylabel('Torque (Nm)')
 xlabel([strrep(coord_name_side, '_', ' '),' (°)'])
@@ -277,4 +305,3 @@ S.subject.scale_MT_params = {{'soleus_r'},'lMo',1,...
 %% 6. Save S
 save(fullfile(PredSim_path,'Subjects',subject_name,[subject_name,'.mat']),"S");
 %% Now you are able to run predictive simulations with personalized muscle parameters!
-
