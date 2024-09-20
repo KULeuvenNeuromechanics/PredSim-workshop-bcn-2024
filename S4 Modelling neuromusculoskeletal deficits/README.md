@@ -49,10 +49,10 @@ Mechanical properties of muscles in children with CP are often altered. This cod
 **Required inputs:**
 In the code ParameterEstimation_BCN_workshop.m, specify the following:
 1.	Subject name: either ‘CP1’ or ‘CP2’. 
-2.	Path of your local directory of ParameterEstimation
-3.	Path of your CasADi folder
-4.	Path of the directory of MuscleRedundancySolver.
-5.	A name to your analysis in Misc.AnalysisID
+2.	Path of your local directory of `PredSim-workshop-bcn-2024\S4 Modelling neuromusculoskeletal deficits`
+3.	Path of the directory of MuscleRedundancySolver.
+4.	Path of your CasADi folder
+6.	A name to your analysis in Misc.AnalysisID
 
 **Optional inputs:**
 All the optional inputs are described on the https://github.com/KULeuvenNeuromechanics/MuscleRedundancySolver page and can be changed in the ParameterEstimation.m file.
