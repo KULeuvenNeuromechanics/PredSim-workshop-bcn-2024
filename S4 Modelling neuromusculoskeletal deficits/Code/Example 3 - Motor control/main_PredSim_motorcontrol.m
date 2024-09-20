@@ -19,7 +19,7 @@ clc
 % 1. Select the CP subject
 % Subject CP1 ('BCN_CP1')
 % Subject CP2 ('BCN_CP2')
-subject_name = 'BCN_CP2';
+subject_name = 'BCN_CP1';
 
 % 2. Select the type of simulation
 % No synergies ('NoSyn')
@@ -27,10 +27,10 @@ subject_name = 'BCN_CP2';
 % Tracking synergy weights ('SynW')
 motor_control = 'SynN';
 
-%% Initialize S
+%% Add folders to the matlab search path
 
-% Full path to the folder containing the PredSim code
-% pathPredSim = 'C:\GBW_MyPrograms\PredSim-dev';
+% Full path to the folder containing the PredSim code -> update this path
+% to yours
 pathPredSim = 'C:\Users\febre\Documents\GitHub\PredSim_repo_results\PredSim';
 
 % Add the PredSim folder to the matlab search path
@@ -39,6 +39,8 @@ addpath(pathPredSim)
 % Add the folder with default settings to the matlab search path. Other
 % folders will be added automatically.
 addpath(fullfile(pathPredSim,'DefaultSettings'))
+
+%% Initialize S
 
 % Initialize the settings. The argument 'gait1018' tells the function to
 % load the settings in PredSim/Subjects/gait1018/settings_gait1018.m
@@ -77,7 +79,7 @@ S.solver.IG_selection_gaitCyclePercent = 100;
 
 % Path to the opensim model of the subject
 %   Note: The name of the file and folder do not have to match S.subject.name
-osim_path = fullfile(pwd,'..\Models\',S.subject.name,[S.subject.name '_PredSim.osim']);
+osim_path = fullfile(pwd,'..\..\Models\',S.subject.name,[S.subject.name '_PredSim.osim']);
 
 % Run the simulation as a batch job (parallel computing toolbox). This can
 % be useful when running many simulations.
@@ -101,8 +103,8 @@ S.OpenSimADOptions.verbose_mode = false;
 
 
 %% Synergy-related inputs
-% Load the synergy analysis results. Update path if needed
-load(['..\Models\',S.subject.name,'\',S.subject.name,'_Syn.mat'])
+% Load the synergy analysis results.
+load([S.subject.name,'_Syn.mat'])
 switch motor_control
     case 'NoSyn'
         S.subject.synergies = 0; % 1 = implement muscle synergies

@@ -90,9 +90,10 @@ Scores from two clinical tests that evaluate motor control are provided in 'Clin
     1.5 good co-contraction with correct muscles
     2: perfect control, perfect contraction with correct muscles
 
-Results from the synergy analyses are provided in 'Models/BCN_CP#' folder:
+Results from the synergy analyses are provided in 'Code\Example 3 - Motor control' folder:
 Muscle synergies were extracted from the EMG signals of eight muscles using non-negative matrix factorisation. We selected the number of synergies that were needed to explain at least 90% of the variance accounted for (VAF) of the measured EMG. 
-The eight measured muscles, for which the synergy analysis has been done, are: 'rect_fem', 'vasti_r', 'bifemsh_r', 'hamstrings_r', 'tib_ant_r', 'gastroc_r', 'soleus_r', 'glut_max_r'. The provided results in 'BCN_CP#_Syn.mat' are:
+The eight measured muscles, for which the synergy analysis has been done, are rectus femoris, vastus lateralis, biceps femoris, medial_hamstrings, tibialis anterior, gastrocnemius, soleus, and gluteus (order of synergy weights). 
+The provided results in 'BCN_CP#_Syn.mat' are:
 1. Number of synergies per leg (SynN.R and SynN.L)
 2. Synergy weights per each muscle and synergy (SynW.R and SynW.L)
 3. The VAF of only one synergy (VAF_1_syn.R and VAF_1_syn.L) during walking was computed as a measure of dynamic motor control [Schwartz et al., 2016].
