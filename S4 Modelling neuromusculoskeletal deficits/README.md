@@ -6,9 +6,9 @@ Physics-based computer simulations that can predict the effect of treatments (e.
 
 The clinical exam is part of children's usual clinical care and is a comprehensive assesment of musculoskeletal functioning. In example 1. you will use (I.) manual muscle testing strength scores and (II.) passive Range of Motion (ROM) scores to personalize optimal muscle force and optimal muscle fiber length, respectively.
 
-I. Strength is evaluated by manual muscle testing. The strength is evaluated for the full active range of motion. 
+### I. Strength is evaluated by manual muscle testing. The strength is evaluated for the full active range of motion. 
  	
-	Strength scores:
+Strength scores:
 	1. Evidence of slight contraction of the muscle but joint motion is not visible
 	2. Complete range of motion in gravity eliminated plane
 	3. Perfect motion against gravity 
@@ -18,7 +18,7 @@ I. Strength is evaluated by manual muscle testing. The strength is evaluated for
 
 Passive range of motion and muscle strength scores are provided in the 'Clinical Exam'/BCN_CP#:
 
-II. Passive range of motion (pROM)
+### II. Passive range of motion (pROM)
 - Soleus (Silfversköld Test):
 	The patient lies supine, with one knee flexed at 90°. The ankle is moved into maximal dorsiflexion. The maximal dorsiflexion angle is measured (evaluation of the length of soleus). The typical value for dorsiflexion in this situation is 20 to 30 °. (pROM_Ankledf 90_#side)
 - Gastrocnemii (Silfversköld Test): 
