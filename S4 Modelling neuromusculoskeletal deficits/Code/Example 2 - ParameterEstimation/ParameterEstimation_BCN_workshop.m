@@ -11,26 +11,26 @@ clear all; clc; close all;
 
 %% Required Inputs
 
-% Subject name
+% 1. Subject name
 Misc.subjectName = 'CP1';
 
-% path of ParameterEstimation folder
-pathParamEst = 'C:\Users\u0145647\OneDrive - KU Leuven\KU Leuven\BCN_workshop_full\PredSim-workshop-bcn-2024\S4. Modelling neuromusculoskeletal deficits\Code\Example 2 - ParameterEstimation';
+% 2. specify path of Seminar folder
+pathSeminar = 'C:\GBW_MyPrograms\PredSim-workshop-bcn-2024\S4 Modelling neuromusculoskeletal deficits';
 
-% path of MuscleRedundancySolver folder
-pathMRS = 'C:\Users\u0145647\OneDrive - KU Leuven\KU Leuven\BCN_Workshop\ParameterEstimation\MuscleRedundancySolver';
+% (automated) path of ParameterEstimation folder
+pathParamEst = fullfile(pathSeminar,'\Code\Example 2 - ParameterEstimation');
 
-% path to CasADi folder
-Misc.casadiPath = 'C:\GBW_MyPrograms\casadi_3_6_5';
+% 3. specify path of MuscleRedundancySolver folder
+pathMRS = 'C:\GBW_MyPrograms\MuscleRedundancySolver';
 
-% Name given to the estimation you run
+% 4. specify path to CasADi folder
+Misc.casadiPath = 'C:\GBW_MyPrograms\casadi_3_6_6';
+
+% 5. Name given to the estimation you run
 Misc.AnalysisID = 'v1'; 
 
-% path to the data folder
-Misc.DataPath = fullfile('C:\Users\u0145647\OneDrive - KU Leuven\KU Leuven\BCN_workshop_full\PredSim-workshop-bcn-2024\S4. Modelling neuromusculoskeletal deficits\Data',['Data_' Misc.subjectName]);
-
-
-
+% (automated) path to the data folder
+Misc.DataPath = fullfile(pathSeminar,'Data',['Data_' Misc.subjectName]);
 
 %% Setup 
 Misc.model_path = fullfile(Misc.DataPath,'Model',['BCN_' Misc.subjectName '_PredSim_noSphere.osim']);
@@ -131,8 +131,6 @@ Misc.opt_sides = {'left' 'right'};
 
 
 
-
-
 %% Optional Inputs
 % upper and lower bound for difference between simulated and measured
 % muscle activity (EMG)
@@ -179,14 +177,9 @@ Misc.ValidationBool = 0; 	% TO DO: we should report results of EMG driven simula
 Misc.Mesh_Frequency = 25;
 
 
-
-
-
 %% Run muscle tendon parameter estimator
 [Results,DatStore,Misc] = solveMuscleRedundancy_BCN_workshop(time,Misc);
 save(fullfile(Misc.OutPath,[Misc.subjectName '_' Misc.AnalysisID '_Results.mat']),'Results','DatStore','Misc');
-
-
 
 
 

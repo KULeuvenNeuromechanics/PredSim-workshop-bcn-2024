@@ -44,11 +44,10 @@ Mechanical properties of muscles in children with CP are often altered. This cod
 **Required inputs:**
 In the code ParameterEstimation_BCN_workshop.m, specify the following:
 1.	Subject name: either ‘CP1’ or ‘CP2’. 
-2.	Path of your local directory of ParameterEstimation
-3.	Path of your CasADi folder
-4.	Path of the directory of MuscleRedundancySolver.
+2.	Path of your local directory of this seminar
+3.	Path of the directory of MuscleRedundancySolver.
+4.	Path of your CasADi folder
 5.	A name to your analysis in Misc.AnalysisID
-6.	Path of the data folders in Misc.DataPath
 
 **NOTE:** Please refrain from putting the codes deep in your folder structures since OpenSim's Muscle Analysis is runin this example which generates long filenames. If the file name is too long, sometimes the does not get written. 
 
@@ -65,7 +64,7 @@ Users have two options to run PredSim with the updated parameters.
 
 **Results Analyses:**
 After generating PredSim simulations, users can use the plotPredSimResults.m file to compare their results to IK results and result of PredSim run without any parameters estimated. Users are allowed to compared multiple PredSim outputs at the same time. User can run multiple parameter estimations with varying settings and then the corresponding PredSim. This code can then be used to analyze how the predicted kinematics change with the different settings. The plotPredSimResults.m has the following required settings;
-1.	subect: Subject name ‘CP1’ or ‘CP2’
+1.	subject: Subject name ‘CP1’ or ‘CP2’
 2.	paramEstModelName: Names of the OpenSim models used to run the PredSim of each of the comparison.
 3.	paramEstSuffix: PredSim outputs are followed by v<number> or job<number>. Please add this information here for each result
 4.	modelLegend: name that the user want to add to identify each PredSim result
