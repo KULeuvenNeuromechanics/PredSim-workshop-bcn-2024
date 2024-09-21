@@ -1,4 +1,8 @@
 *.asv
+
+S1 Modelling assistive devices/Results/*
+S1 Modelling assistive devices/Figures/*.pptx
+
 Modelling neuromusculoskeletal deficits/ParameterEstimation/ResultsTest_CP1/MuscleAnalysis/muscle_analysis_JointAngles_segment_2.xml
 Modelling neuromusculoskeletal deficits/ParameterEstimation/ResultsTest_CP1/MuscleAnalysis/muscle_analysis_JointAngles_segment_16_final.xml
 Modelling neuromusculoskeletal deficits/ParameterEstimation/ResultsTest_CP1/MuscleAnalysis/muscle_analysis_JointAngles_segment_16.xml
