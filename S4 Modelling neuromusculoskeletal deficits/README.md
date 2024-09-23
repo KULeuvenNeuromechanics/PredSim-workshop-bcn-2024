@@ -66,17 +66,12 @@ Users have two options to run PredSim with the updated parameters.
 1.	Use the updated OpenSim model (OpenSim model called `BCN_CP<1 or 2>_<Misc.AnalysisID>_paramEst.osim`) that has the estimated optimal fiber length and estimated tendon slack length already written in it, along with `BCN_CP<1 or 2>_<Misc.AnalysisID>_paramEst_tendon_stiffness_scale.mat` to set the S.subject.tendon_stiff_scale setting in PredSim.
 2.	Use the .mat files corresponding to estimated scaling factors of optimal fiber length and tendon slack length (`BCN_CP<1 or 2>_<Misc.AnalysisID>_paramEst_optimal_fiber_length_scale.mat` and `BCN_CP<1 or 2>_<Misc.AnalysisID>_paramEst_tendon_slack_length_scale.mat`) to set the subject.scale_MT_param setting of PredSim, along with `BCN_CP<1 or 2>_<Misc.AnalysisID>_paramEst_tendon_stiffness_scale.mat` to set the S.subject.tendon_stiff_scale setting in PredSim.
 
-**Results Analyses:**
-After generating PredSim simulations, users can use the plotPredSimResults.m file to compare their results to IK results and result of PredSim run without any parameters estimated. Users are allowed to compared multiple PredSim outputs at the same time. User can run multiple parameter estimations with varying settings and then the corresponding PredSim. This code can then be used to analyze how the predicted kinematics change with the different settings. The plotPredSimResults.m has the following required settings;
-1.	subject: Subject name ‘CP1’ or ‘CP2’
-2.	paramEstModelName: Names of the OpenSim models used to run the PredSim of each of the comparison.
-3.	paramEstSuffix: PredSim outputs are followed by v<number> or job<number>. Please add this information here for each result
-4.	modelLegend: name that the user want to add to identify each PredSim result
-5.	Path of your local directory of `PredSim-workshop-bcn-2024\S4 Modelling neuromusculoskeletal deficits`
-6.	predsimResultsPath: path of PredSimResults folder where the PredSim results get stored
-
-
-
+Along with adjusting the parameters mentioned above, users will also need to specify the following settings for PredSim:
+1. Initial guess: Initial guess from inverse kinematics of 100% gait cycle can be used. The initial guesses are named CP4_T0_10_IK_adjusted.mot for subject CP1 and CP16_T0_11_IK_adjusted.mot for subject CP2. These files can be found in the IK folder inside the Data folders of each subject.
+2. While using initial guess base on inverse kinematics, it is advisable to adjust pelvis height of the initial guess.
+3. Forward velocity: For CP1, the forward velocity is 1.1240 m/s. For CP2, the forward velocity is 1.0314 m/s.
+4. Simulate a full gait cycle instead of the default half gait cycle since the model is not symmetric.
+5. Specify your casadi path
 
 ## Example 3. Modelling neural impairments through muscle synergies
 
@@ -103,6 +98,15 @@ The eight measured muscles, for which the synergy analysis has been done, are: '
 In the example, two types of predictive simulations (additionally to the baseline simulation, without imposing synergies constraints) can be run:
 1. Only imposing the number of synergies: The number of synergies per leg are imposed, by constraining all muscle activations to be controlled by a fixed number of synergies. This is done by adding a term in the cost function that minimises the difference between muscle activations in the optimisation and muscle actiovations reconstructed from the synergy activations and synergy weights. Additionally, this difference is constrained in an inequality constraint.
 2. Imposing the number of synergies and tracking synergy weights : The patient-specific synergy weights (co-activation patterns) obtained from the synergy analysis are tracked fr the eight measured muscles. This is done by adding a term in the cost function that minimises the error between the synergy weights in the optimisation and the synergy weights from the synergy analysis.
+
+## Results Analyses:
+After generating PredSim simulations, users can use the plotPredSimResults.m file in the Code folder to compare their results to IK results and result of PredSim run without any parameters estimated (linearly scaled parameters). Users are allowed to compared multiple PredSim outputs at the same time. User can run multiple parameter estimations with varying settings and then the corresponding PredSim. This code can then be used to analyze how the predicted kinematics change with the different settings. The plotPredSimResults.m has the following required settings;
+1.	subject: Subject name ‘CP1’ or ‘CP2’
+2.	paramEstModelName: Names of the OpenSim models used to run the PredSim of each of the comparison.
+3.	paramEstSuffix: PredSim outputs are followed by v<number> or job<number>. Please add this information here for each result
+4.	modelLegend: name that the user want to add to identify each PredSim result
+5.	Path of your local directory of `PredSim-workshop-bcn-2024\S4 Modelling neuromusculoskeletal deficits`
+6.	predsimResultsPath: path of PredSimResults folder where the PredSim results get stored
 
 
 # References:
