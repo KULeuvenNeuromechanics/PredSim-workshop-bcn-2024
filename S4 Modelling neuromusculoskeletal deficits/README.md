@@ -67,7 +67,7 @@ Users have two options to run PredSim with the updated parameters.
 2.	Use the .mat files corresponding to estimated scaling factors of optimal fiber length and tendon slack length (`BCN_CP<1 or 2>_<Misc.AnalysisID>_paramEst_optimal_fiber_length_scale.mat` and `BCN_CP<1 or 2>_<Misc.AnalysisID>_paramEst_tendon_slack_length_scale.mat`) to set the subject.scale_MT_param setting of PredSim, along with `BCN_CP<1 or 2>_<Misc.AnalysisID>_paramEst_tendon_stiffness_scale.mat` to set the S.subject.tendon_stiff_scale setting in PredSim.
 
 Along with adjusting the parameters mentioned above, users will also need to specify the following settings for PredSim:
-1. Initial guess: Initial guess from inverse kinematics of 100% gait cycle can be used. The initial guesses are named CP4_T0_10_IK_adjusted.mot for subject CP1 and CP16_T0_11_IK_adjusted.mot for subject CP2. These files can be found in the IK folder inside the Data folders of each subject.
+1. Initial guess: Initial guess from inverse kinematics of 100% gait cycle can be used. The initial guesses are named CP1_T0_10_IK_adjusted.mot for subject CP1 and CP2_T0_11_IK_adjusted.mot for subject CP2. These files can be found in the IK folder inside the Data folders of each subject.
 2. While using initial guess base on inverse kinematics, it is advisable to adjust pelvis height of the initial guess.
 3. Forward velocity: For CP1, the forward velocity is 1.1240 m/s. For CP2, the forward velocity is 1.0314 m/s.
 4. Simulate a full gait cycle instead of the default half gait cycle since the model is not symmetric.
