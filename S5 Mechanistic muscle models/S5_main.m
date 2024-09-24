@@ -3,8 +3,8 @@ clear all; close all; clc
 % CaFaXC repository, and specify their locations below
 
 % [EDIT START]
-CaFaXC_folder = uitgetdir;
-PredSim_folder = uitgetdir;
+CaFaXC_folder = uigetdir('','Select CaFaXC folder');
+PredSim_folder = uigetdir('','Select PredSim folder');
 % [EDIT STOP]
 
 addpath(genpath(CaFaXC_folder))
@@ -75,7 +75,7 @@ end
 K = mod(k,4);
 ks = repmat([.05 .5; .5 .5; .5 .05; .05 .05],100,1);
 
-if ishandle(K+1), close(K+1), end; figure(K+1)
+if ishandle(K+2), close(K+2), end; figure(K+2)
 set(gcf,'name', ['XBparams.CB.f = ',num2str(parms.CB.f), ' - XBparams.CB.g = [', num2str(parms.CB.g),']'])
 set(gcf,'units','normalized','position',[ks(K+1,:) .45 .3])
 
@@ -134,8 +134,7 @@ subplot(224)
 plot(fv.vHill, fv.FHill,'k:','linewidth',2); hold on
 
 k = k+1;
-
-for i = 1:(K+1)
+for i = 2:(K+1)
     figure(i)
     
     if (K+1) == 1
@@ -158,7 +157,6 @@ end
 %
 % Question 2: How do the values of XBparams.CB.f and XBparams.CB.g
 % influence the force-velocity relation?
-close all
 
 % [EDIT START]                       
 parms.CB.f = 1000*rand(1);
@@ -171,7 +169,7 @@ RMSE = sum((fv.FHill - FCB).^2);
 disp(['RMSE = ', num2str(RMSE)])
 
 % plot
-figure(1)
+figure(10)
 subplot(2,3,1:3)
 plot(fv.vHill, [fv.FHill; FCB],'linewidth',2); hold on
 xlabel('Shortening velocity (L_{opt}/s)')
@@ -229,23 +227,27 @@ parms.CB.g = [parms.CB.f 1000*rand(1) 1000*rand(1)];
 % [EDIT STOP]
 
 % calculate DM model force-velocity
-parms.CB.Xmax = [1/2 1/4 1/6];
 parms.CB.analytical = 1;
 parms.CB.mu = 1;
-FCB = cfxc.CB_force_velocity(fv.vHill, parms);
-[fv, ~] = cfxc.evaluate_DM(parms, fv, 0);
+
+% evaluate
+[~, fv] = cfxc.fit_CB_on_Hill(parms, fv,[]);
 
 % plot
-if ishandle(1), close(1); end; figure(1)
+if ~ishandle(1)
+    figure(1)
+    plot(fv.vHill, fv.FHill,'linewidth',2); hold on
+    xlabel('Shortening velocity (L_{opt})')
+    ylabel('Force (F_{max})')
+    box off
+    ylim([0 2])
+    title('Hill-type force-velocity relation')
+end
+    
 figure(1)
-plot(fv.vHill, [fv.FHill; FCB; fv.FCB(:,3)'],'linewidth',2); hold on
-xlabel('Shortening velocity (L_{opt})')
-ylabel('Force (F_{max})'); ylim([0 2])
-box off
-ylim([0 3])
+plot(fv.vHill(:), [fv.FCB(:,1) fv.FCB(:,3)],'linewidth',2); hold on
 legend('Hill-type','Original crossbridge','Approximated crossbridge','location','best')
 legend boxoff
-title('Force-velocity')
 
 %% Part 4: evaluate force-velocity during imposed joint movement
 % The distribution-moment model has been interfaced with a tendon and
@@ -267,8 +269,9 @@ parms.ce.es = [-0.3183 -8.1492 -0.3741 0.8856];
 parms.ce.vmaxrel = 10;
 parms.func.fv = @(a, F, Fisom, parms) parms.ce.vmaxrel/(2*parms.ce.es(2)) * (-exp(parms.ce.es(4)/parms.ce.es(1) - F/(parms.ce.es(1)*a*Fisom)) + exp(F/(parms.ce.es(1)*a*Fisom) - parms.ce.es(4)/parms.ce.es(1)) - 2*parms.ce.es(3));
 
-if ishandle(2), close(2); end; figure(2)
-figure(2)
+if ishandle(20), close(20); end; figure(20)
+figure(20)
+color = get(gca,'colororder');
 
 % [EDIT START]
 % choose a isokinetic velocity
@@ -326,7 +329,7 @@ for j = 1:2
     Fse = parms.func.fse((lse-parms.see.lse0)/parms.see.lse0, parms) * parms.ce.Fmax;
     Fce = Fse - Fpe;
     
-    figure(2)
+    figure(20)
     subplot(241)
     plot(t, lce); hold on; box off
     title('CE length')
@@ -362,12 +365,12 @@ end
 subplot(2,4,[3,4,7,8])
 color = get(gca,'colororder');
 
-% re-calculate force-velocity relations
+% recalc fv
 fv.FHill = linspace(0,2, 100);
 fv.vHill = parms.func.fv(1,fv.FHill, 1, parms);
-FCB = cfxc.CB_force_velocity(fv.vHill, parms);
-[fv, parms] = cfxc.evaluate_DM(parms, fv, 0);
+[~, fv] = cfxc.fit_CB_on_Hill(parms, fv,[]);
 
+% plot fv
 plot(fv.vHill, fv.FHill,'color',color(1,:),'linewidth',2)
 plot(fv.vHill, fv.FCB(:,3)', 'color',color(2,:),'linewidth',2);
 xlim([min(fv.vHill) max(fv.vHill)])
