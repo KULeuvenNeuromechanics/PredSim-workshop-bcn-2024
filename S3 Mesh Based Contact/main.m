@@ -59,7 +59,7 @@ S.initial_time=2.2292;
 S.final_time  =3.3740;
 
 % path to folder where you want to store the results of the OCP
-S.subject.save_folder  = fullfile(pathRepoFolder,'TrackSimResults',S.subject.name); 
+S.subject.save_folder  = fullfile(pathRepo,'TrackSimResults',S.subject.name); 
 
 % give the path to the osim model of your subject
 osim_path = fullfile(pathRepo,'Subjects',S.subject.name,[S.subject.name '.osim']);
