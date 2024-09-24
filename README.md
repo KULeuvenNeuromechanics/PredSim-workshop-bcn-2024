@@ -1,16 +1,35 @@
-# PredSim-workshop-bcn-2024
-Material for PredSim workship September 2024 (Barcelona)
+# Workshop on Predictive Simulations of Human Movement - Barcelona 2024
 
-This repository will be made public and shared with the participants of the workshop.
+Welcome to the Workshop on Predictive Simulations of Human Movement repository!
 
-While we are still adding content, the repo is set to private access.
+This repo contains the resources used during the workshop. Below is a list of the 5 seminars:
+- S1 Modelling assistive devices
+- S2 How do we choose the weights in the cost function
+- S3 Integration of mesh-based contact models
+- S4 Modelling neuromusculoskeletal deficits
+- S5 Mechanistic muscle models
 
-Some suggestions to maintain an overview of the content in this repo:
-- each session has its own folder
-- for the hands-on sessions, this folder contains: 
-    - a document with instrucions (pdf or md)
-    - a matlab script for each example
-    - supporting code/files for the examples
-- for PredSim sessions, use [this script](./Modelling%20assistive%20devices/example_1.m) as a template for the "main" of each example 
+Seminar specific information can be found in the respective folders.
+
+For general information about the workshop look at the [website](https://sites.google.com/view/optimal-control-bcn).
+
+## Dependencies
+
+The examples and assignments in this repo have some dependencies.
+
+| Seminar | Windows   | MATLAB     | CasADi  | PredSim  | MuscleRedundancySolver | OpenSim Creator | CaFaXC |
+|----------|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|
+| S1 Modelling assistive devices                          | ☑️   | ☑️  | ☑️  | ☑️  |     |  optional |
+| S2 How do we choose the weights in the cost function    | ☑️   | ☑️  | ☑️  |     |      |  |
+| S3 Integration of mesh-based contact models             | ☑️   | ☑️  | ☑️  |     |     |  |
+| S4 Modelling neuromusculoskeletal deficits              | ☑️   | ☑️  | ☑️  | ☑️  | ☑️ |   |
+| S5 Mechanistic muscle models                            | ☑️   | ☑️  |      |     |     |   | ☑️ 
+
+Here you can find the links to the dependencies
+- [CasADi](https://web.casadi.org/get/)
+- [PredSim](https://github.com/KULeuvenNeuromechanics/PredSim)
+- [MuscleRedundancySolver](https://github.com/KULeuvenNeuromechanics/MuscleRedundancySolver)
+- [OpenSim Creator](https://www.opensimcreator.com/)
+- [CaFaXC](https://github.com/timvanderzee/CaFaXC)
 
 
