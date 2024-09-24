@@ -33,3 +33,4 @@ Here you can find the links to the dependencies
 - [CaFaXC](https://github.com/timvanderzee/CaFaXC)
 
 
+The organization team acknowledges the support from Universitat Politècnica de Catalunya.
