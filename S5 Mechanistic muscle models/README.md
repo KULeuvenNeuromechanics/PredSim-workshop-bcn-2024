@@ -12,12 +12,26 @@ Energy is required (from ATP) for crossbridge detachment.
 
 Animation from [Vale & Milligan (2000)](https://doi.org/10.1126/science.288.5463.88)
 
-Huxley (1957) formulated a simple model of crossbridge cycling, in which crossbridges can be either attached or detached.
-The model tracks the proportion of attached crossbridge as a function of both crossbridge strain and time. 
+Andrew Huxley (1957) formulated a simple mechanistic model of crossbridge cycling, in which crossbridges can be either attached or detached. The model tracks the proportion of attached crossbridge as a function of both crossbridge strain and time. 
 
 ![picture](Huxley_model.png)
 
-Drawing adapted from [Huxley (1957)](https://pubmed.ncbi.nlm.nih.gov/13485191/)
+Huxley formulated crossbridge attachment (f) and detachment (g) rate functions that depended on crossbridge strain x, parameterized by rate constants. The piece-wise linear formulation of the rate functions was simple, yet sufficient to predict A.V. Hill's force-velocity relation.
+
+![picture](Huxley_rates.png)
+
+The graph below shows the agreement between Hill's force-velocity relation (line) and the force-velocity relation produced by Huxley's crossbridge model (circles)
+
+![picture](Huxley_force_velocity.png)
+
+ The three figures above are from [Huxley (1957)](https://pubmed.ncbi.nlm.nih.gov/13485191/).
+
+ In this tutorial, you will learn how:
+- Hill's force-velocity relation arises from Huxley's mechanistic crossbridge model
+- Hill-type force-velocity parameters (e.g. vmax, curvature) relate to Huxley's crossbridge rate constants
+- Approximating Huxley's crossbridge model affects the relation between rate constants and force-velocity
+- Mechanistic crossbridge models can be interfaced with elastic tendon
+- Force transients resulting from isokinetic joint rotations differ between Hill-type and crossbridge models
 
 ## Scripts
 - **S5_main.m**: standalone script of this tutorial.
