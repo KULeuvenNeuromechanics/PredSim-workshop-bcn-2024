@@ -12,7 +12,7 @@ pathParamEst = 'C:\Users\u0145647\OneDrive - KU Leuven\KU Leuven\BCN_workshop_fu
 predsimResultsPath = {'C:\GBW_MyPrograms\PredSim_2D_BCN\PredSimResults'}; % path of PredSimResults folder
 
 %% Setup
-modelLegends = [{'linearly scaled MT parameters 1stepDown'} modelLegend];
+modelLegends = [{'PredSim no personalization'} modelLegend];
 originalModelPredSimResultPath = {[pathParamEst '\Data_' subject '\Model\PredSimResult']};
 IKdataPath = [pathParamEst '\Data_' subject '\IK'];
 if strcmp(subject,'CP1')
