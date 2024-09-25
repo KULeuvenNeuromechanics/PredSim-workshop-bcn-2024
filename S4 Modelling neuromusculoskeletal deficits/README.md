@@ -29,13 +29,16 @@ Strength scores indicate:
 **Requirements:** OpenSim, CasADi.
 
 **How to use the code:**
-The code main_mskClinicalExam.m (PredSim-workshop-bcn-2024/Modelling neuromusculoskeletal deficits/Code/Example 1 - msk Clinical exam) guides the users through the estimation process. 
-Users only have to edit the lines of code that are inbetween % ------ start edit ----- and % ----- end edit -----
- 
+The code main_mskClinicalExam.m (PredSim-workshop-bcn-2024/Modelling neuromusculoskeletal deficits/Code/Example 1 - msk Clinical exam) guides the users through the estimation process. Users only have to edit the lines of code that are inbetween % ------ start edit ----- and % ----- end edit -----
+
 **Running PredSim with estimated muscle-tendon parameters:**
-1. 
-
-
+Users have two options to run PredSim with the updated parameters.
+1. Copy the structures 'S.subject.muscle_strength line 58-line 70' and `S.subject.scale_MT_params - line 297-302` and paste in the `%% Settings` cell of PredSim main.m
+2. Load the saved structures in the %% Settings cell of PredSim main.m.
+   `S.subject.muscle_strength = load(fullfile(pathRepo,'Subjects',S.subject.name,[S.subject.name,'_muscle_strength.mat']));`
+   `S.subject.scale_MT_params = load(fullfile(pathRepo,'Subjects',S.subject.name,[S.subject.name,'_MT_params.mat']));`
+NOTE: you also have to specify other subject specific parameters - see `## Running PredSim`
+	
 ## Example 2. Modelling msk impairments from data-driven EMG torque relationships
 
 Mechanical properties of muscles in children with CP are often altered. This code allows users to estimate the optimal fiber length, tendon slack length and tendon stiffness of each muscle such that the EMG-torque relationship across each joint can be satisfied. The code used for estimating these properties is available on https://github.com/KULeuvenNeuromechanics/MuscleRedundancySolver. This example will use data of walking gait and clinical tests to estimate the muscle-tendon properties for two children with CP. Data of two clinical tests are used. Instrumented passive Spasticity Assessment (IPSA) [Bar-On et al., 2013] and pendulum test [Fowler et al., 2000].
@@ -66,13 +69,6 @@ Users have two options to run PredSim with the updated parameters.
 1.	Use the updated OpenSim model (OpenSim model called `BCN_CP<1 or 2>_<Misc.AnalysisID>_paramEst.osim`) that has the estimated optimal fiber length and estimated tendon slack length already written in it, along with `BCN_CP<1 or 2>_<Misc.AnalysisID>_paramEst_tendon_stiffness_scale.mat` to set the S.subject.tendon_stiff_scale setting in PredSim.
 2.	Use the .mat files corresponding to estimated scaling factors of optimal fiber length and tendon slack length (`BCN_CP<1 or 2>_<Misc.AnalysisID>_paramEst_optimal_fiber_length_scale.mat` and `BCN_CP<1 or 2>_<Misc.AnalysisID>_paramEst_tendon_slack_length_scale.mat`) to set the subject.scale_MT_param setting of PredSim, along with `BCN_CP<1 or 2>_<Misc.AnalysisID>_paramEst_tendon_stiffness_scale.mat` to set the S.subject.tendon_stiff_scale setting in PredSim.
 
-Along with adjusting the parameters mentioned above, users will also need to specify the following settings for PredSim:
-1. Initial guess: Initial guess from inverse kinematics of 100% gait cycle can be used. The initial guesses are named CP1_T0_10_IK_adjusted.mot for subject CP1 and CP2_T0_11_IK_adjusted.mot for subject CP2. These files can be found in the IK folder inside the Data folders of each subject.
-2. While using initial guess base on inverse kinematics, it is advisable to adjust pelvis height of the initial guess.
-3. Forward velocity: For CP1, the forward velocity is 1.1240 m/s. For CP2, the forward velocity is 1.0314 m/s.
-4. Simulate a full gait cycle instead of the default half gait cycle since the model is not symmetric.
-5. Specify your casadi path
-
 ## Example 3. Modelling neural impairments through muscle synergies
 
 Muscle co-activation patterns derived from synergies might capture non-selective muscle control in children with CP and offer a way to include motor control deficits in predictive simulation workflows.
@@ -99,13 +95,21 @@ In the example, two types of predictive simulations (additionally to the baselin
 1. Only imposing the number of synergies: The number of synergies per leg are imposed, by constraining all muscle activations to be controlled by a fixed number of synergies. This is done by adding a term in the cost function that minimises the difference between muscle activations in the optimisation and muscle actiovations reconstructed from the synergy activations and synergy weights. Additionally, this difference is constrained in an inequality constraint.
 2. Imposing the number of synergies and tracking synergy weights : The patient-specific synergy weights (co-activation patterns) obtained from the synergy analysis are tracked fr the eight measured muscles. This is done by adding a term in the cost function that minimises the error between the synergy weights in the optimisation and the synergy weights from the synergy analysis.
 
+## Running PredSim
+Along with adjusting the parameters mentioned above, users will also need to specify the following settings for PredSim:
+1. Initial guess: Initial guess from inverse kinematics of 100% gait cycle can be used. The initial guesses are stored in `<path to PredSim-workshop-bcn-2024>\S4 Modelling neuromusculoskeletal deficits\Data\Data_<CP1 OR CP2>\<IK\<CP4_T0_10_IK_adjusted.mot for subject CP1 and CP16_T0_11_IK_adjusted.mot for subject CP2>`. 
+2. While using initial guess base on inverse kinematics, it is advisable to adjust pelvis height of the initial guess `S.subject.adapt_IG_pelvis_y = 1;`.
+3. Forward velocity (`S.misc.forward_velocity`): For CP1, the forward velocity is 1.1240 m/s. For CP2, the forward velocity is 1.0314 m/s.
+4. Simulate a full gait cycle (`S.misc.gaitmotion_type = 'FullGaitCycle';`) instead of the default half gait cycle since the model is not symmetric.
+5. Specify your casadi path
+
 ## Results Analyses:
-After generating PredSim simulations, users can use the plotPredSimResults.m file in the Code folder to compare their results to IK results and result of PredSim run without any parameters estimated (linearly scaled parameters). Users are allowed to compared multiple PredSim outputs at the same time. User can run multiple parameter estimations with varying settings and then the corresponding PredSim. This code can then be used to analyze how the predicted kinematics change with the different settings. The plotPredSimResults.m has the following required settings;
+After generating PredSim simulations, users can use the plotPredSimResults.m file in the Code folder to compare their results to IK results and result of PredSim run without any parameters estimated (Generic - no personalization). Users are allowed to compared multiple PredSim outputs at the same time. User can run multiple parameter estimations with varying settings and then the corresponding PredSim. This code can then be used to analyze how the predicted kinematics change with the different settings. The plotPredSimResults.m has the following required settings;
 1.	subject: Subject name ‘CP1’ or ‘CP2’
 2.	paramEstModelName: Names of the OpenSim models used to run the PredSim of each of the comparison.
 3.	paramEstSuffix: PredSim outputs are followed by v<number> or job<number>. Please add this information here for each result
 4.	modelLegend: name that the user want to add to identify each PredSim result
-5.	Path of your local directory of `PredSim-workshop-bcn-2024\S4 Modelling neuromusculoskeletal deficits`
+5.	path of your local directory of `PredSim-workshop-bcn-2024\S4 Modelling neuromusculoskeletal deficits`
 6.	predsimResultsPath: path of PredSimResults folder where the PredSim results get stored
 
 
