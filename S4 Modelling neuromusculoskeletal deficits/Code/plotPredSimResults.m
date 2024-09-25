@@ -4,17 +4,17 @@ clc
 
 %% Required settings
 subject = 'CP1'; % subject name
-paramEstModelName = {['BCN_' subject '_paramEst'], ['BCN_' subject '_paramEst']}; % names of the models
-paramEstSuffix = {'job31' 'job33'}; % suffix of PredSim results
-modelLegend = {'all MT parameters estimated analysis 1', ...
-    'all MT parameters estimated analysis 2'}; % what the user wants to call each result.
-pathParamEst = 'C:\Users\u0145647\OneDrive - KU Leuven\KU Leuven\BCN_workshop_full\PredSim-workshop-bcn-2024\Modelling neuromusculoskeletal deficits\ParameterEstimation'; % path of ParameterEstimation folder
-predsimResultsPath = {'C:\GBW_MyPrograms\PredSim_2D_BCN\PredSimResults'}; % path of PredSimResults folder
+paramEstModelName = {['BCN_' subject,'_v1_paramEst'], ['BCN_' subject,'_v1_paramEst']}; % names of the models
+paramEstSuffix =  {'job39' 'job42'};
+modelLegend = {'all MT parameters estimated analysis 1'; 'all MT parameters estimated analysis 2'}; % what the user wants to call each result.
+pathSeminar = 'C:\GBW_MyPrograms\PredSim-workshop-bcn-2024\S4 Modelling neuromusculoskeletal deficits';
+predsimResultsPath = {'C:\GBW_MyPrograms\PredSimResults'};
 
 %% Setup
-modelLegends = [{'PredSim no personalization'} modelLegend];
-originalModelPredSimResultPath = {[pathParamEst '\Data_' subject '\Model\PredSimResult']};
-IKdataPath = [pathParamEst '\Data_' subject '\IK'];
+pathData = fullfile(pathSeminar,'Data');
+modelLegends = [{'Generic - no personalization'},modelLegend{:}];
+originalModelPredSimResultPath = {[pathData '\Data_' subject '\Model\PredSimResult']};
+IKdataPath = [pathData '\Data_' subject '\IK'];
 if strcmp(subject,'CP1')
     originalSuffix = 'job30';
     mass = 58.8;
@@ -115,6 +115,6 @@ for j=1:length(joints)
     box off
     title(jointLabels{j},'interpreter','none')
     if j==4
-        legend(['experimental data',modelLegends'],'interpreter','none','FontSize',10)
+        legend([{'experimental data'},modelLegends],'interpreter','none','FontSize',10)
     end
 end
