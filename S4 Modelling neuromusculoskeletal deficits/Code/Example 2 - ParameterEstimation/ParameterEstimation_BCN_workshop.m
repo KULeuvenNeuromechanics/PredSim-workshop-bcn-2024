@@ -139,8 +139,8 @@ Misc.EMGbounds  = [-0.1 0.1];
 % upper and lower bound for EMG scaling
 Misc.BoundsScaleEMG = [0.2 5];
 
-% Misc.Estimate_TendonStiffness = Misc.allMuscleList(1:Misc.nAllMuscList); % Names of muscles of which tendon stifness is estimated
-Misc.Estimate_TendonStiffness = []; % Names of muscles of which tendon stifness is estimated
+Misc.Estimate_TendonStiffness = Misc.allMuscleList(1:Misc.nAllMuscList); % Names of muscles of which tendon stifness is estimated
+% Misc.Estimate_TendonStiffness = []; % Names of muscles of which tendon stifness is estimated
 Misc.lb_kT_scaling = 0.5; % Lower bound for scaling generic tendon stiffness
 Misc.ub_kT_scaling = 1.5; % Upper bound for scaling generic tendon stiffness
 Misc.Coupled_TendonStiffness = {}; % Couple muscles that should have equal tendons stiffness
@@ -151,7 +151,7 @@ Misc.ub_lMo_scaling = 2.5; % Upper bound for scaling generic tendon stiffness
 Misc.Coupled_fiber_length = {}; % Couple muscles that should have equal tendons stiffness
 
 Misc.Estimate_TendonSlackLength= Misc.allMuscleList(1:Misc.nAllMuscList); % Names of muscles of which tendon stifness is estimated
-Misc.lb_lTs_scaling= 0.4; % Lower bound for scaling generic tendon stiffness
+Misc.lb_lTs_scaling= 0.5; % Lower bound for scaling generic tendon stiffness
 Misc.ub_lTs_scaling = 2; % Upper bound for scaling generic tendon stiffness
 Misc.Coupled_slack_length = {}; % Couple muscles that should have equal tendons stiffness
 
@@ -174,7 +174,7 @@ Misc.MRSBool = 0;
 % Validation Bool: Select if you want to run the muscle redundancy solver with the optimized parameters
 Misc.ValidationBool = 0; 	
 
-Misc.Mesh_Frequency = 50;
+Misc.Mesh_Frequency = 25;
 
 
 %% Run muscle tendon parameter estimator
