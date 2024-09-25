@@ -31,12 +31,12 @@ Qs_mod_all=Qs_mod_all_rad;
 Qs_mod_all(:,1:3)=Qs_mod_all_rad(:,1:3)*180/pi;
 for i=1:size(Qs_exp_all,2)
     subplot(2,3,i)
+    plot(R.time.coll, Qs_mod_all(:,i),'r','LineWidth',2);
+    hold all;
     if i==1
-        plot(R.time.coll,Qs_exp_all(:,i),'b','Linewidth',2);
+        plot(R.time.coll,Qs_exp_all(:,i),'--b','Linewidth',2);
     end
     title(strrep(R.colheaders.coordinates{i},'_',' '));
-    hold all;
-    plot(R.time.coll, Qs_mod_all(:,i),'r','LineWidth',2);
     if i<=3
         ylabel('angle [º]');
     else
@@ -44,7 +44,7 @@ for i=1:size(Qs_exp_all,2)
     end
     xlabel('time [s]')
     if i==1
-        legend('reference','model','orientation','horizontal','box','off','Position',[0.137,0.885,0.207,0.043]);
+        legend('model','reference','orientation','horizontal','box','off','Position',[0.137,0.885,0.207,0.043]);
     elseif i==2
         legend('model','orientation','horizontal','box','off','Position',[0.527,0.887,0.094,0.043]);
     end
