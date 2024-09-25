@@ -37,7 +37,7 @@ Users have two options to run PredSim with the updated parameters.
 2. Load the saved structures in the %% Settings cell of PredSim main.m.
  `S.subject.muscle_strength = load(fullfile(pathRepo,'Subjects',S.subject.name,[S.subject.name,'_muscle_strength.mat']));`
  `S.subject.scale_MT_params = load(fullfile(pathRepo,'Subjects',S.subject.name,[S.subject.name,'_MT_params.mat']));`
-NOTE: you also have to specify other subject specific parameters - see `## Running PredSim`
+NOTE: you also have to specify other subject specific parameters - see `Running PredSim` - below
 	
 ## Example 2. Modelling msk impairments from data-driven EMG torque relationships
 
