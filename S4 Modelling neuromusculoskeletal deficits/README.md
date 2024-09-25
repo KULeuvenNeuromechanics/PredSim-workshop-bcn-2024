@@ -35,8 +35,8 @@ The code main_mskClinicalExam.m (PredSim-workshop-bcn-2024/Modelling neuromuscul
 Users have two options to run PredSim with the updated parameters.
 1. Copy the structures 'S.subject.muscle_strength line 58-line 70' and `S.subject.scale_MT_params - line 297-302` and paste in the `%% Settings` cell of PredSim main.m
 2. Load the saved structures in the %% Settings cell of PredSim main.m.
-   `S.subject.muscle_strength = load(fullfile(pathRepo,'Subjects',S.subject.name,[S.subject.name,'_muscle_strength.mat']));`
-   `S.subject.scale_MT_params = load(fullfile(pathRepo,'Subjects',S.subject.name,[S.subject.name,'_MT_params.mat']));`
+ `S.subject.muscle_strength = load(fullfile(pathRepo,'Subjects',S.subject.name,[S.subject.name,'_muscle_strength.mat']));`
+ `S.subject.scale_MT_params = load(fullfile(pathRepo,'Subjects',S.subject.name,[S.subject.name,'_MT_params.mat']));`
 NOTE: you also have to specify other subject specific parameters - see `## Running PredSim`
 	
 ## Example 2. Modelling msk impairments from data-driven EMG torque relationships
