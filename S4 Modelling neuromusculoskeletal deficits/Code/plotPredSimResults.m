@@ -54,14 +54,12 @@ exp_2_l.IKgs_exp_std_left = exp_2_l.IKgs_exp_std;
 
 for m=1:length(models)
     clear R
-    if exist([resultPath{m} '\' models{m} '\' models{m} '_' jobs{m} '.mot'])
-        IK(m) = read_motionFile_v40([resultPath{m} '\' models{m} '\' models{m} '_' jobs{m} '.mot']);
-        load([resultPath{m} '\' models{m} '\' models{m} '_' jobs{m} '.mat']);
-        Rall{m} = R;
-        ID(m).data = R.kinetics.T_ID;
-        ID(m).labels = R.colheaders.coordinates;
-        MIall{m} = model_info;
-    end
+    IK(m) = read_motionFile_v40([resultPath{m} '\' models{m} '\' models{m} '_' jobs{m} '.mot']);
+    load([resultPath{m} '\' models{m} '\' models{m} '_' jobs{m} '.mat']);
+    Rall{m} = R;
+    ID(m).data = R.kinetics.T_ID;
+    ID(m).labels = R.colheaders.coordinates;
+    MIall{m} = model_info;
 end
 
 %% plot result
@@ -92,18 +90,16 @@ for j=1:length(joints)
     end
     hold on
     for m=1:length(models)
-        if exist([resultPath{m} '\' models{m} '\' models{m} '_' jobs{m} '.mot'])
-            if strcmp(joints{j}(end-1:end),'_l')
-                idx_HS_l = find(diff(Rall{m}.ground_reaction.GRF_l(:,2)>(mass/3))==1);
-                idx_l = [idx_HS_l:100 1:(idx_HS_l-1)];
-                jointCurve = IK(m).data(idx_l,find(ismember(IK(m).labels,joints{j})));
-            else
-                jointCurve = IK(m).data(1:end/2,find(ismember(IK(m).labels,joints{j})));
-            end
-            plot(linspace(0,100,100),jointCurve,'Color',colors(m,:),'LineWidth',1.5);
-            RMSE(j,m) = sqrt(sumsqr(meanCurve - jointCurve)/size(meanCurve,1));
-            hold on
+        if strcmp(joints{j}(end-1:end),'_l')
+            idx_HS_l = find(diff(Rall{m}.ground_reaction.GRF_l(:,2)>(mass/3))==1);
+            idx_l = [idx_HS_l:100 1:(idx_HS_l-1)];
+            jointCurve = IK(m).data(idx_l,find(ismember(IK(m).labels,joints{j})));
+        else
+            jointCurve = IK(m).data(1:end/2,find(ismember(IK(m).labels,joints{j})));
         end
+        plot(linspace(0,100,100),jointCurve,'Color',colors(m,:),'LineWidth',1.5);
+        RMSE(j,m) = sqrt(sumsqr(meanCurve - jointCurve)/size(meanCurve,1));
+        hold on
     end
     xlim([0 100])
     if p>5
