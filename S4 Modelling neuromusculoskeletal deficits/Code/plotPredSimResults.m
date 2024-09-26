@@ -111,6 +111,6 @@ for j=1:length(joints)
     box off
     title(jointLabels{j},'interpreter','none')
     if j==4
-        legend([{'experimental data'},modelLegends],'interpreter','none','FontSize',10)
+        legend([{[subject ' experimental data']},modelLegends],'interpreter','none','FontSize',10)
     end
 end
