@@ -265,6 +265,11 @@ colormat = zeros(size(pmat));
 % colormat = log10(pmat)./log10(max(pmat, [], 'all'));
 colormat = (pmat)./(max(pmat, [], 'all'));
 
+%% save pmat
+load(Outname,'R');
+R.pmat=pmat;
+save(Outname,'R','-append')
+
 %% Draw the femoral and tibial components with the faces of the tibial 
 % components in red if there was significant contact, otherwise in green
 fcon = figure(3); 
