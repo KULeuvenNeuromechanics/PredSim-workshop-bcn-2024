@@ -12,11 +12,11 @@ The clinical exam is part of children's usual clinical care and is a comprehensi
 The strength is evaluated for the full active range of motion by manual muscle testing. 
  	
 Strength scores indicate:
-	1. Evidence of slight contraction of the muscle but joint motion is not visible
-	2. Complete range of motion in gravity eliminated plane
-	3. Perfect motion against gravity 
-	4. Motion against gravity with some (moderate resistance)
-	5. Motion against gravity with maximal resistance
+1. Evidence of slight contraction of the muscle but joint motion is not visible
+2. Complete range of motion in gravity eliminated plane
+3. Perfect motion against gravity 
+4. Motion against gravity with some (moderate resistance)
+5. Motion against gravity with maximal resistance
 
 ### II. Passive range of motion (pROM)
 - Soleus (Silfversköld Test):
@@ -37,7 +37,7 @@ Users have two options to run PredSim with the updated parameters.
 2. Load the saved structures in the %% Settings cell of PredSim main.m.
  `S.subject.muscle_strength = load(fullfile(pathRepo,'Subjects',S.subject.name,[S.subject.name,'_muscle_strength.mat']));`
  `S.subject.scale_MT_params = load(fullfile(pathRepo,'Subjects',S.subject.name,[S.subject.name,'_MT_params.mat']));`
-NOTE: you also have to specify other subject specific parameters - see `Running PredSim` - below
+NOTE: you also have to specify other subject specific parameters - see [Running PredSim](#running-predsim)
 	
 ## Example 2. Modelling msk impairments from data-driven EMG torque relationships
 
