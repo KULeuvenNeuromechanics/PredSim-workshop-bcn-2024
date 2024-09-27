@@ -12,11 +12,11 @@ The clinical exam is part of children's usual clinical care and is a comprehensi
 The strength is evaluated for the full active range of motion by manual muscle testing. 
  	
 Strength scores indicate:
-	1. Evidence of slight contraction of the muscle but joint motion is not visible
-	2. Complete range of motion in gravity eliminated plane
-	3. Perfect motion against gravity 
-	4. Motion against gravity with some (moderate resistance)
-	5. Motion against gravity with maximal resistance
+1. Evidence of slight contraction of the muscle but joint motion is not visible
+2. Complete range of motion in gravity eliminated plane
+3. Perfect motion against gravity 
+4. Motion against gravity with some (moderate resistance)
+5. Motion against gravity with maximal resistance
 
 ### II. Passive range of motion (pROM)
 - Soleus (Silfversköld Test):
