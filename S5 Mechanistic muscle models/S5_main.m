@@ -1,4 +1,18 @@
 clear all; close all; clc
+%This hands-on tutorial is an introduction into mechanistic muscle models.
+%In the tutorial, you will compare the 2-state crossbridge model of Huxley
+%(1957) to existing phenomenological Hill-type muscle models (used in
+%PredSim & OpenSim). While mechanistic crossbridge models have not yet been
+%incoorporated into the PredSim framework (this is work in progress), this
+%tutorial provides custom code to run forward simulations with these
+%models. The mechanistic muscle modeling framework is based on van der Zee
+%et al., (2024), and the associated CaFaXC muscle model.
+%
+% Author: Tim J van der Zee
+% Contact: tim.vanderzee@kuleuven.be
+%
+% Last edit: 9/27/2024
+%
 % make sure to clone both the PredSim-workshop-bcf-2024 repository and the
 % CaFaXC repository, and specify their locations below
 
@@ -134,8 +148,8 @@ subplot(224)
 plot(fv.vHill, fv.FHill,'k:','linewidth',2); hold on
 
 k = k+1;
-for i = 2:(K+1)
-    figure(i)
+for i = 1:(K+1)
+    figure(i+1)
     
     if (K+1) == 1
         subplot(221)
@@ -169,6 +183,7 @@ RMSE = sum((fv.FHill - FCB).^2);
 disp(['RMSE = ', num2str(RMSE)])
 
 % plot
+if ishandle(10), close(10);end
 figure(10)
 subplot(2,3,1:3)
 plot(fv.vHill, [fv.FHill; FCB],'linewidth',2); hold on
@@ -234,18 +249,15 @@ parms.CB.mu = 1;
 [~, fv] = cfxc.fit_CB_on_Hill(parms, fv,[]);
 
 % plot
-if ~ishandle(1)
-    figure(1)
-    plot(fv.vHill, fv.FHill,'linewidth',2); hold on
-    xlabel('Shortening velocity (L_{opt})')
-    ylabel('Force (F_{max})')
-    box off
-    ylim([0 2])
-    title('Hill-type force-velocity relation')
-end
-    
+if ishandle(1), close(1); end
 figure(1)
-plot(fv.vHill(:), [fv.FCB(:,1) fv.FCB(:,3)],'linewidth',2); hold on
+plot(fv.vHill(:), [fv.FHill(:) fv.FCB(:,1) fv.FCB(:,3)],'linewidth',2); hold on
+xlabel('Shortening velocity (L_{opt})')
+ylabel('Force (F_{max})')
+box off
+ylim([0 2])
+title('Hill-type force-velocity relation')
+
 legend('Hill-type','Original crossbridge','Approximated crossbridge','location','best')
 legend boxoff
 
