@@ -4,7 +4,7 @@ This is the content of workshop 3 based on the application of mesh-based contact
 
 Here we model only the contact at a right **knee prosthesis**. The femoral component is assumed to be fixed. The tibial component has six degrees of freedom (knee flexion-extension, abduction-adduction, internal-external rotations, and anterior-posterior, superior-inferior and medial-lateral translations). 
 
-![Image of the prosthesis](https://github.com/gilserrancoli/Workshop3_Bcn2024/blob/main/images/Image_prosthesis60.png)
+![Image of the prosthesis](images/Image_prosthesis60.png)
 
 The formulated optimal control problem is simple. We track knee experimental kinematics (6 dofs) of a gait trial (starting from left heel contact) and knee experimental medial and lateral resultant contact forces. The main code is in [main.m](main.m). The cost function has the following terms:
  $J=J_{track_{KCF}}+J_{track_q}+J_{min_{\ddot{q}}}+J_{min_{q_{kneesec}}}$
