@@ -15,10 +15,12 @@ clc; clear; close all
 % ------- start edit -------
 PredSim_path = 'C:\GBW_MyPrograms\PredSim'; % path to PredSim
 Seminar_path = 'C:\GBW_MyPrograms\PredSim-workshop-bcn-2024\S4 Modelling neuromusculoskeletal deficits'; % path to Seminar code
+casADiPath = 'C:\GBW_MyPrograms\casadi_3_6_5';
 % ------- stop edit -------
 
 addpath(genpath(PredSim_path));
 addpath(genpath(Seminar_path));
+addpath(genpath(casADiPath));
 %% 2. Intialize settings
 % Subject CP1 ('BCN_CP1')
 % Subject CP2 ('BCN_CP2')
@@ -182,8 +184,7 @@ for j = 1:length(sf_lMo)
         scale.subject.scale_MT_params = {{['gastroc_',side]},'lMo',sf_lMo(j)};
     elseif strcmp(muscle_toScale,'hamstrings')
         scale.subject.scale_MT_params = {{['gastroc_',side]},'lMo',sf_lMo_gastrocnemii,...
-            {['hamstrings_',side],['bifemsh_',side]},'lMo',sf_lMo(j)};
-     %%%% TO DO: decide if we want to include bifemsh in this
+            {['hamstrings_',side]},'lMo',sf_lMo(j)};
     end
 
 
