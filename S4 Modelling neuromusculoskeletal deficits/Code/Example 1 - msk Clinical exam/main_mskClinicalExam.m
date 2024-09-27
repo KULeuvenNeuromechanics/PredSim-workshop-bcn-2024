@@ -184,8 +184,7 @@ for j = 1:length(sf_lMo)
         scale.subject.scale_MT_params = {{['gastroc_',side]},'lMo',sf_lMo(j)};
     elseif strcmp(muscle_toScale,'hamstrings')
         scale.subject.scale_MT_params = {{['gastroc_',side]},'lMo',sf_lMo_gastrocnemii,...
-            {['hamstrings_',side],['bifemsh_',side]},'lMo',sf_lMo(j)};
-     %%%% TO DO: decide if we want to include bifemsh in this
+            {['hamstrings_',side]},'lMo',sf_lMo(j)};
     end
 
 
