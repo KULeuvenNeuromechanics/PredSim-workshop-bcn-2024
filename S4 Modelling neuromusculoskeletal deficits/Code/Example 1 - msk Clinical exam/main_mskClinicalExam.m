@@ -15,10 +15,12 @@ clc; clear; close all
 % ------- start edit -------
 PredSim_path = 'C:\GBW_MyPrograms\PredSim'; % path to PredSim
 Seminar_path = 'C:\GBW_MyPrograms\PredSim-workshop-bcn-2024\S4 Modelling neuromusculoskeletal deficits'; % path to Seminar code
+casADiPath = 'C:\GBW_MyPrograms\casadi_3_6_5';
 % ------- stop edit -------
 
 addpath(genpath(PredSim_path));
 addpath(genpath(Seminar_path));
+addpath(genpath(casADiPath));
 %% 2. Intialize settings
 % Subject CP1 ('BCN_CP1')
 % Subject CP2 ('BCN_CP2')
