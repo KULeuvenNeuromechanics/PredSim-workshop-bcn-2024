@@ -103,7 +103,7 @@ if contains(muscle_toScale,'hamstrings')
     dlgtitle = 'sf_lMo_gastrocnemii';
     dims = [1 60];
     definput = {'1'};
-    sf_lMo_gastrocnemii = inputdlg(prompt, dlgtitle, dims, definput);
+    sf_lMo_gastrocnemii = str2double(inputdlg(prompt, dlgtitle, dims, definput));
 end
 
 
