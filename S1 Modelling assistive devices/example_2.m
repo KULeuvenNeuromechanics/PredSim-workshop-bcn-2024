@@ -40,7 +40,7 @@ addpath(fullfile(pathPredSim,'DefaultSettings'))
 S.subject.name = 'gait1018';
 
 % Path to folder where simulation results should be saved
-S.misc.save_folder  = fullfile(pwd,'Results','example_1',S.subject.name); 
+S.misc.save_folder  = fullfile(pwd,'Results','example_2',S.subject.name); 
 
 % Provide an initial guess for the kinematics.
 %   Option 1: warm-start
